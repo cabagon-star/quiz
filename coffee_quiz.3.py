@@ -34,7 +34,7 @@ st.markdown("""
 }
 
 .question-card {
-    background-color: white;
+    background-color: black;
     padding: 26px;
     border-radius: 24px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.07);
