@@ -14,36 +14,36 @@ st.markdown("""
 
 .hero {
     background: linear-gradient(135deg, #006241 0%, #1e3932 100%);
-    padding: 34px;
-    border-radius: 30px;
+    padding: 26px;
+    border-radius: 26px;
     color: white;
     text-align: center;
-    margin-bottom: 24px;
-    box-shadow: 0 14px 34px rgba(0,0,0,0.16);
+    margin-bottom: 18px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.14);
 }
 
 .hero-title {
-    font-size: 42px;
+    font-size: 36px;
     font-weight: 900;
 }
 
 .hero-subtitle {
-    font-size: 17px;
+    font-size: 15px;
     opacity: 0.95;
 }
 
 .question-card {
     background-color: white;
-    padding: 26px;
-    border-radius: 26px;
+    padding: 18px;
+    border-radius: 22px;
     border: 1px solid #e5dfd4;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    margin-bottom: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+    margin-bottom: 14px;
 }
 
 .question-title {
     color: #1e3932;
-    font-size: 26px;
+    font-size: 23px;
     font-weight: 900;
     text-align: center;
 }
@@ -51,26 +51,26 @@ st.markdown("""
 .helper {
     color: #6f6259;
     text-align: center;
-    font-size: 15px;
-    margin-top: 6px;
+    font-size: 14px;
+    margin-top: 4px;
 }
 
 .option-card {
     background-color: white;
     border: 1px solid #ded6c8;
-    border-radius: 22px;
-    padding: 12px;
+    border-radius: 18px;
+    padding: 8px;
     text-align: center;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 10px;
 }
 
 .option-title {
     color: #1e3932;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 800;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 4px;
+    margin-bottom: 6px;
 }
 
 .stButton > button {
@@ -78,7 +78,7 @@ st.markdown("""
     color: white;
     border-radius: 999px;
     border: none;
-    padding: 10px 18px;
+    padding: 8px 14px;
     font-weight: 800;
     width: 100%;
 }
@@ -91,75 +91,97 @@ st.markdown("""
 .result-card {
     background: linear-gradient(135deg, #006241 0%, #1e3932 100%);
     color: white;
-    padding: 30px;
-    border-radius: 30px;
+    padding: 28px;
+    border-radius: 28px;
     text-align: center;
-    margin-top: 24px;
-    box-shadow: 0 14px 34px rgba(0,0,0,0.18);
+    margin-top: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.16);
 }
 
 .badge {
     background-color: #cba258;
     color: #1e3932;
-    padding: 7px 14px;
+    padding: 6px 13px;
     border-radius: 999px;
     font-weight: 900;
     display: inline-block;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .result-name {
-    font-size: 38px;
+    font-size: 34px;
     font-weight: 900;
 }
 
 .match {
-    font-size: 18px;
+    font-size: 17px;
     opacity: 0.95;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
 .profile-card {
     background-color: #d4e9e2;
     color: #1e3932;
-    padding: 20px;
-    border-radius: 22px;
-    margin-top: 18px;
+    padding: 18px;
+    border-radius: 20px;
+    margin-top: 16px;
 }
 
 .alt-card {
     background-color: white;
     color: #1e3932;
-    padding: 18px;
-    border-radius: 20px;
-    margin-top: 14px;
+    padding: 16px;
+    border-radius: 18px;
+    margin-top: 12px;
     border: 1px solid #d8d0c3;
-    box-shadow: 0 5px 16px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
 }
 
 .small-note {
     color: #6f6259;
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 18px;
 }
 
 @media (max-width: 600px) {
     .hero {
-        padding: 24px;
-        border-radius: 22px;
+        padding: 20px;
+        border-radius: 20px;
     }
 
     .hero-title {
-        font-size: 31px;
+        font-size: 29px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .question-card {
+        padding: 15px;
+        border-radius: 18px;
     }
 
     .question-title {
-        font-size: 22px;
+        font-size: 20px;
+    }
+
+    .helper {
+        font-size: 13px;
+    }
+
+    .option-card {
+        padding: 6px;
+        border-radius: 16px;
+    }
+
+    .option-title {
+        font-size: 14px;
     }
 
     .result-name {
-        font-size: 29px;
+        font-size: 28px;
     }
 }
 </style>
@@ -172,141 +194,61 @@ questions = [
         "title": "¿Qué tan dulce te gusta?",
         "helper": "Elige el nivel de dulzor que más va contigo.",
         "options": [
-            {
-                "value": "Nada",
-                "label": "Nada dulce",
-                "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800"
-            },
-            {
-                "value": "Poco",
-                "label": "Poco dulce",
-                "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800"
-            },
-            {
-                "value": "Medio",
-                "label": "Dulzor medio",
-                "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=800"
-            },
-            {
-                "value": "Mucho",
-                "label": "Muy dulce",
-                "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=800"
-            },
+            {"value": "Nada", "label": "Nada dulce", "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500"},
+            {"value": "Poco", "label": "Poco dulce", "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500"},
+            {"value": "Medio", "label": "Dulzor medio", "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=500"},
+            {"value": "Mucho", "label": "Muy dulce", "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500"},
         ]
     },
     {
         "key": "leche",
         "title": "¿Prefieres café con leche?",
-        "helper": "La leche cambia la textura, el cuerpo y la suavidad.",
+        "helper": "La leche cambia textura, cuerpo y suavidad.",
         "options": [
-            {
-                "value": "Sin leche",
-                "label": "Sin leche",
-                "image": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=800"
-            },
-            {
-                "value": "A veces",
-                "label": "A veces",
-                "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800"
-            },
-            {
-                "value": "Sí",
-                "label": "Con leche",
-                "image": "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=800"
-            },
+            {"value": "Sin leche", "label": "Sin leche", "image": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=500"},
+            {"value": "A veces", "label": "A veces", "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500"},
+            {"value": "Sí", "label": "Con leche", "image": "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=500"},
         ]
     },
     {
         "key": "textura",
         "title": "¿Qué textura prefieres?",
-        "helper": "Piensa en cómo quieres sentir el café en boca.",
+        "helper": "Piensa en cómo quieres sentir el café.",
         "options": [
-            {
-                "value": "Ligera",
-                "label": "Ligera",
-                "image": "https://images.unsplash.com/photo-1502462041640-b3d7e50d0662?w=800"
-            },
-            {
-                "value": "Cremosa",
-                "label": "Cremosa",
-                "image": "https://images.unsplash.com/photo-1534778101976-62847782c213?w=800"
-            },
-            {
-                "value": "Fuerte",
-                "label": "Fuerte",
-                "image": "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=800"
-            },
+            {"value": "Ligera", "label": "Ligera", "image": "https://images.unsplash.com/photo-1502462041640-b3d7e50d0662?w=500"},
+            {"value": "Cremosa", "label": "Cremosa", "image": "https://images.unsplash.com/photo-1534778101976-62847782c213?w=500"},
+            {"value": "Fuerte", "label": "Fuerte", "image": "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=500"},
         ]
     },
     {
         "key": "temperatura",
         "title": "¿Cómo lo prefieres?",
-        "helper": "Caliente para algo clásico, frío para algo refrescante.",
+        "helper": "Caliente para clásico, frío para refrescante.",
         "options": [
-            {
-                "value": "Caliente",
-                "label": "Caliente",
-                "image": "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=800"
-            },
-            {
-                "value": "Frío",
-                "label": "Frío",
-                "image": "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=800"
-            },
+            {"value": "Caliente", "label": "Caliente", "image": "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=500"},
+            {"value": "Frío", "label": "Frío", "image": "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500"},
         ]
     },
     {
         "key": "aroma",
         "title": "¿Qué aroma te atrae más?",
-        "helper": "Esto define el perfil sensorial de tu recomendación.",
+        "helper": "Esto define el perfil sensorial.",
         "options": [
-            {
-                "value": "Chocolate",
-                "label": "Chocolate",
-                "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800"
-            },
-            {
-                "value": "Caramelo",
-                "label": "Caramelo",
-                "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800"
-            },
-            {
-                "value": "Frutal",
-                "label": "Frutal",
-                "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=800"
-            },
-            {
-                "value": "Nuez / Avellana",
-                "label": "Nuez / Avellana",
-                "image": "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=800"
-            },
+            {"value": "Chocolate", "label": "Chocolate", "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500"},
+            {"value": "Caramelo", "label": "Caramelo", "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=500"},
+            {"value": "Frutal", "label": "Frutal", "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=500"},
+            {"value": "Nuez / Avellana", "label": "Nuez / Avellana", "image": "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=500"},
         ]
     },
     {
         "key": "momento",
         "title": "¿Qué buscas al tomar café?",
-        "helper": "Queremos recomendarte algo según tu mood del momento.",
+        "helper": "Elige según tu mood del momento.",
         "options": [
-            {
-                "value": "Energía",
-                "label": "Energía",
-                "image": "https://images.unsplash.com/photo-1497636577773-f1231844b336?w=800"
-            },
-            {
-                "value": "Relajarme",
-                "label": "Relajarme",
-                "image": "https://images.unsplash.com/photo-1511081692775-05d0f180a065?w=800"
-            },
-            {
-                "value": "Balance",
-                "label": "Balance",
-                "image": "https://images.unsplash.com/photo-1523942839745-7848c839b661?w=800"
-            },
-            {
-                "value": "Acompañar algo dulce",
-                "label": "Acompañar algo dulce",
-                "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800"
-            },
+            {"value": "Energía", "label": "Energía", "image": "https://images.unsplash.com/photo-1497636577773-f1231844b336?w=500"},
+            {"value": "Relajarme", "label": "Relajarme", "image": "https://images.unsplash.com/photo-1511081692775-05d0f180a065?w=500"},
+            {"value": "Balance", "label": "Balance", "image": "https://images.unsplash.com/photo-1523942839745-7848c839b661?w=500"},
+            {"value": "Acompañar algo dulce", "label": "Algo dulce", "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=500"},
         ]
     },
 ]
@@ -473,20 +415,14 @@ def perfil_usuario(answers):
 
 def choose_option(q):
     options = q["options"]
-
-    if len(options) == 2:
-        cols = st.columns(2)
-    elif len(options) == 3:
-        cols = st.columns(3)
-    else:
-        cols = st.columns(2)
+    cols = st.columns(2)
 
     for idx, option in enumerate(options):
-        col = cols[idx % len(cols)]
+        col = cols[idx % 2]
 
         with col:
             st.markdown('<div class="option-card">', unsafe_allow_html=True)
-            st.image(option["image"], use_container_width=True)
+            st.image(option["image"], width=150)
             st.markdown(f'<div class="option-title">{option["label"]}</div>', unsafe_allow_html=True)
 
             if st.button(
