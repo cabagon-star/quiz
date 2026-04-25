@@ -6,12 +6,16 @@ st.set_page_config(
     layout="centered"
 )
 
+# -------------------
+# ESTILOS (COLORES + UI)
+# -------------------
 st.markdown("""
 <style>
 .stApp {
     background: linear-gradient(180deg, #f4f1e8 0%, #ffffff 100%);
 }
 
+/* HERO */
 .hero {
     background-color: #006241;
     padding: 34px;
@@ -25,7 +29,6 @@ st.markdown("""
 .hero-title {
     font-size: 42px;
     font-weight: 900;
-    margin-bottom: 8px;
 }
 
 .hero-subtitle {
@@ -33,15 +36,37 @@ st.markdown("""
     opacity: 0.95;
 }
 
+/* BLOQUE PREGUNTAS */
 .question-card {
-    background-color: black;
+    background-color: white;
     padding: 26px;
     border-radius: 24px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.07);
     border: 1px solid #e5dfd4;
-    margin-bottom: 22px;
 }
 
+/* TEXTO DE PREGUNTAS */
+label {
+    color: #1e3932 !important;
+    font-weight: 700 !important;
+}
+
+/* SELECTBOX */
+div[data-baseweb="select"] > div {
+    background-color: #f7f3ea !important;
+    border: 1px solid #d8d0c3 !important;
+    border-radius: 14px !important;
+}
+
+div[data-baseweb="select"] > div:hover {
+    border-color: #006241 !important;
+}
+
+div[data-baseweb="select"] span {
+    color: #1e3932 !important;
+}
+
+/* RESULTADO */
 .result-card {
     background-color: #006241;
     color: white;
@@ -49,7 +74,6 @@ st.markdown("""
     border-radius: 26px;
     margin-top: 24px;
     text-align: center;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.14);
 }
 
 .result-name {
@@ -60,9 +84,9 @@ st.markdown("""
 .match {
     font-size: 18px;
     margin-top: 6px;
-    opacity: 0.95;
 }
 
+/* PERFIL */
 .profile-card {
     background-color: #d4e9e2;
     color: #1e3932;
@@ -71,6 +95,7 @@ st.markdown("""
     margin-top: 18px;
 }
 
+/* ALTERNATIVAS */
 .alt-card {
     background-color: #ffffff;
     color: #1e3932;
@@ -78,20 +103,19 @@ st.markdown("""
     border-radius: 20px;
     margin-top: 14px;
     border: 1px solid #d8d0c3;
-    box-shadow: 0 5px 16px rgba(0,0,0,0.05);
 }
 
+/* BADGE */
 .badge {
-    display: inline-block;
     background-color: #cba258;
-    color: #1e3932;
     padding: 6px 12px;
     border-radius: 999px;
-    font-size: 13px;
     font-weight: 700;
     margin-bottom: 10px;
+    display: inline-block;
 }
 
+/* TEXTO FINAL */
 .small-note {
     color: #6f6259;
     font-size: 14px;
@@ -101,214 +125,83 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
+# -------------------
+# HEADER
+# -------------------
 st.markdown("""
 <div class="hero">
     <div class="hero-title">☕ Coffee Match</div>
-    <div class="hero-subtitle">Descubre tu café ideal según tu sabor, textura y mood del momento.</div>
+    <div class="hero-subtitle">Descubre tu café ideal en segundos</div>
 </div>
 """, unsafe_allow_html=True)
 
-st.progress(0.15)
-
+# -------------------
+# PREGUNTAS
+# -------------------
 st.markdown('<div class="question-card">', unsafe_allow_html=True)
 
-dulzor = st.selectbox("1. ¿Qué tan dulce te gusta?", ["Nada", "Poco", "Medio", "Mucho"])
-leche = st.selectbox("2. ¿Prefieres café con leche?", ["Sin leche", "A veces", "Sí"])
-textura = st.selectbox("3. ¿Qué textura prefieres?", ["Ligera", "Cremosa", "Fuerte"])
-temperatura = st.selectbox("4. ¿Cómo lo prefieres?", ["Caliente", "Frío"])
-aroma = st.selectbox("5. ¿Qué aroma te atrae más?", ["Chocolate", "Caramelo", "Frutal", "Nuez / Avellana"])
-momento = st.selectbox("6. ¿Qué buscas al tomar café?", ["Energía", "Relajarme", "Balance", "Acompañar algo dulce"])
+dulzor = st.selectbox("¿Qué tan dulce te gusta?", ["Nada", "Poco", "Medio", "Mucho"])
+leche = st.selectbox("¿Prefieres café con leche?", ["Sin leche", "A veces", "Sí"])
+textura = st.selectbox("¿Qué textura prefieres?", ["Ligera", "Cremosa", "Fuerte"])
+temperatura = st.selectbox("¿Cómo lo prefieres?", ["Caliente", "Frío"])
+aroma = st.selectbox("¿Qué aroma te gusta?", ["Chocolate", "Caramelo", "Frutal"])
+momento = st.selectbox("¿Qué buscas?", ["Energía", "Relajarme", "Balance"])
 
-st.markdown("</div>", unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
-
-def calcular_recomendacion(dulzor, leche, textura, temperatura, aroma, momento):
-    scores = {
-        "Latte": 0,
-        "Cappuccino": 0,
-        "Americano": 0,
-        "Espresso": 0,
-        "Cold Brew": 0,
-        "V60": 0,
-        "Mocha": 0,
-        "Flat White": 0
-    }
-
+# -------------------
+# MOTOR SIMPLE
+# -------------------
+def recomendar():
     if leche == "Sí":
-        scores["Latte"] += 5
-        scores["Cappuccino"] += 4
-        scores["Flat White"] += 4
-        scores["Mocha"] += 5
-    elif leche == "A veces":
-        scores["Cappuccino"] += 3
-        scores["Flat White"] += 3
-        scores["Latte"] += 2
-        scores["Americano"] += 1
+        bebida = "Latte"
+    elif dulzor == "Nada":
+        bebida = "Americano"
+    elif aroma == "Frutal":
+        bebida = "V60"
     else:
-        scores["Americano"] += 5
-        scores["Espresso"] += 4
-        scores["V60"] += 4
-        scores["Cold Brew"] += 4
-
-    if dulzor == "Mucho":
-        scores["Mocha"] += 5
-        scores["Latte"] += 4
-    elif dulzor == "Medio":
-        scores["Latte"] += 3
-        scores["Cappuccino"] += 3
-        scores["Mocha"] += 3
-    elif dulzor == "Poco":
-        scores["Flat White"] += 3
-        scores["Cappuccino"] += 2
-        scores["Americano"] += 2
-    else:
-        scores["Espresso"] += 4
-        scores["Americano"] += 4
-        scores["V60"] += 3
-
-    if textura == "Cremosa":
-        scores["Latte"] += 5
-        scores["Cappuccino"] += 4
-        scores["Flat White"] += 4
-        scores["Mocha"] += 4
-    elif textura == "Fuerte":
-        scores["Espresso"] += 5
-        scores["Americano"] += 4
-        scores["Flat White"] += 3
-    else:
-        scores["V60"] += 5
-        scores["Cold Brew"] += 3
-        scores["Americano"] += 2
+        bebida = "Cappuccino"
 
     if temperatura == "Frío":
-        scores["Cold Brew"] += 6
-        scores["Americano"] += 2
-        scores["Latte"] += 2
-        scores["Mocha"] += 2
-    else:
-        scores["Latte"] += 2
-        scores["Cappuccino"] += 2
-        scores["Espresso"] += 2
-        scores["V60"] += 2
+        bebida = "Iced " + bebida
 
-    if aroma == "Chocolate":
-        scores["Mocha"] += 6
-        scores["Flat White"] += 2
-        scores["Cappuccino"] += 2
-    elif aroma == "Caramelo":
-        scores["Latte"] += 4
-        scores["Cappuccino"] += 3
-        scores["Cold Brew"] += 2
-    elif aroma == "Frutal":
-        scores["V60"] += 5
-        scores["Cold Brew"] += 4
-        scores["Americano"] += 2
-    else:
-        scores["Cappuccino"] += 3
-        scores["Flat White"] += 3
-        scores["Latte"] += 2
-
-    if momento == "Energía":
-        scores["Espresso"] += 5
-        scores["Americano"] += 4
-        scores["Cold Brew"] += 3
-    elif momento == "Relajarme":
-        scores["Latte"] += 4
-        scores["Cappuccino"] += 3
-        scores["V60"] += 2
-    elif momento == "Balance":
-        scores["Flat White"] += 4
-        scores["Cappuccino"] += 3
-        scores["Americano"] += 2
-    else:
-        scores["Latte"] += 4
-        scores["Mocha"] += 4
-        scores["Cappuccino"] += 3
-
-    ordenados = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    mejor_score = ordenados[0][1]
-
-    return [(bebida, round((score / mejor_score) * 100, 1)) for bebida, score in ordenados[:3]]
-
-
-def nombre_final(bebida, temperatura):
-    if temperatura == "Frío" and bebida in ["Latte", "Americano", "Mocha", "Cappuccino"]:
-        return f"Iced {bebida}"
     return bebida
 
+# -------------------
+# RESULTADO
+# -------------------
+if st.button("🔍 Ver recomendación", use_container_width=True):
 
-def perfil_usuario(dulzor, leche, textura, temperatura, aroma, momento):
-    if leche == "Sí":
-        base = "cremoso"
-    elif leche == "Sin leche":
-        base = "intenso y directo"
-    else:
-        base = "balanceado"
-
-    return f"Perfil {base}, con preferencia {aroma.lower()}, textura {textura.lower()} y estilo {temperatura.lower()}."
-
-
-def descripcion(bebida):
-    textos = {
-        "Latte": "Suave, cremoso y fácil de tomar. Ideal para una experiencia cómoda.",
-        "Cappuccino": "Espumoso, aromático y balanceado. Buena mezcla entre café y textura.",
-        "Americano": "Directo, limpio y con sabor marcado a café.",
-        "Espresso": "Corto, intenso y con mucha presencia.",
-        "Cold Brew": "Frío, suave y refrescante. Perfecto para algo ligero con carácter.",
-        "V60": "Ligero, aromático y limpio. Ideal para descubrir notas más delicadas.",
-        "Mocha": "Cremoso, dulce y chocolatoso. Una opción más indulgente.",
-        "Flat White": "Cremoso pero más intenso que un latte. Muy buen balance."
-    }
-    return textos.get(bebida, "Una opción alineada con tus respuestas.")
-
-
-if st.button("🔍 Encontrar mi café ideal", use_container_width=True):
-    st.progress(1.0)
-
-    resultados = calcular_recomendacion(dulzor, leche, textura, temperatura, aroma, momento)
-
-    bebida_1, score_1 = resultados[0]
-    bebida_2, score_2 = resultados[1]
-    bebida_3, score_3 = resultados[2]
-
-    final_1 = nombre_final(bebida_1, temperatura)
-    final_2 = nombre_final(bebida_2, temperatura)
-    final_3 = nombre_final(bebida_3, temperatura)
+    bebida = recomendar()
 
     st.markdown(f"""
     <div class="result-card">
         <div class="badge">MEJOR MATCH</div>
-        <div class="result-name">{final_1}</div>
-        <div class="match">{score_1}% de compatibilidad contigo</div>
-        <br>
-        <div>{descripcion(bebida_1)}</div>
+        <div class="result-name">{bebida}</div>
+        <div class="match">100% compatible contigo</div>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown(f"""
     <div class="profile-card">
-        <b>Tu perfil de sabor:</b><br>
-        {perfil_usuario(dulzor, leche, textura, temperatura, aroma, momento)}
+        Perfil: te gustan sabores {aroma.lower()}, textura {textura.lower()} y estilo {temperatura.lower()}.
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown(f"""
+    st.markdown("""
     <div class="alt-card">
-        <b>🔄 Alternativa cercana:</b> {final_2} — {score_2}% match<br>
-        Una opción parecida, pero con una sensación diferente en taza.
+        🔄 Alternativa: prueba un Cappuccino
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown(f"""
+    st.markdown("""
     <div class="alt-card">
-        <b>🎯 Para explorar:</b> {final_3} — {score_3}% match<br>
-        Ideal si quieres probar algo fuera de tu elección habitual.
+        🎯 Explora: prueba un Cold Brew
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="small-note">
-        Este demo puede adaptarse al menú real de cualquier cafetería.
+        Basado en tus preferencias de sabor.
     </div>
     """, unsafe_allow_html=True)
