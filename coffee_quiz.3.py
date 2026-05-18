@@ -143,13 +143,13 @@ st.markdown("""
 
 .result-card {
     background:
-        radial-gradient(circle at top, rgba(63,199,216,0.16) 0%, rgba(0,0,0,0) 34%),
+        radial-gradient(circle at top, rgba(203,162,88,0.12) 0%, rgba(0,0,0,0) 34%),
         linear-gradient(135deg, #151515 0%, #050505 100%);
     color: var(--text);
-    padding: 24px 18px;
+    padding: 22px 18px;
     border-radius: 28px;
     text-align: center;
-    margin-top: 14px;
+    margin-top: 18px;
     border: 2.2px solid rgba(203,162,88,0.90);
     box-shadow: 0 14px 34px rgba(0,0,0,0.48);
 }
@@ -187,7 +187,7 @@ st.markdown("""
 .profile-card {
     background: linear-gradient(180deg, #171717 0%, #101010 100%);
     color: var(--cream);
-    padding: 16px;
+    padding: 16px 18px;
     border-radius: 20px;
     margin-top: 12px;
     font-size: 15px;
@@ -203,13 +203,14 @@ st.markdown("""
 .alt-card {
     background: linear-gradient(180deg, #171717 0%, #101010 100%);
     color: var(--cream);
-    padding: 14px;
+    padding: 16px;
     border-radius: 18px;
     margin-top: 10px;
     border: 2px solid rgba(203,162,88,0.72);
     box-shadow: 0 8px 20px rgba(0,0,0,0.28);
     font-size: 14px;
-    line-height: 1.3;
+    line-height: 1.35;
+    min-height: 96px;
 }
 
 .alt-card b {
@@ -220,7 +221,8 @@ st.markdown("""
     color: var(--muted);
     font-size: 13px;
     text-align: center;
-    margin-top: 14px;
+    margin-top: 18px;
+    margin-bottom: 8px;
 }
 
 div[data-testid="stImage"] {
@@ -240,6 +242,11 @@ div[data-testid="stImage"] img {
 
 .stProgress > div > div > div > div {
     background-color: var(--gold);
+}
+
+/* Evita que se vea texto residual como 'None' si Streamlit renderiza una salida vacía */
+div:has(> code):has(> code:only-child) {
+    display: none;
 }
 
 @media (max-width: 600px) {
@@ -820,8 +827,6 @@ if current_step < total_steps:
                 reset_quiz()
 
 else:
-    st.progress(1.0)
-
     resultados = calcular_recomendacion(st.session_state.answers)
 
     bebida_1, score_1 = resultados[0]
