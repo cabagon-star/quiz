@@ -109,7 +109,7 @@ st.markdown("""
     background: linear-gradient(135deg, #cba258 0%, #e1c178 100%);
     color: #0b0b0b;
     border-radius: 999px;
-    border: 1px solid rgba(203,162,88,0.9);
+    border: 2px solid rgba(203,162,88,0.90);
     padding: 7px 10px;
     font-weight: 900;
     width: 100%;
@@ -120,13 +120,13 @@ st.markdown("""
 .stButton > button[kind="primary"]:hover {
     background: #f0d28a;
     color: #0b0b0b;
-    border: 1px solid #f0d28a;
+    border: 2px solid #f0d28a;
 }
 
 .stButton > button[kind="secondary"] {
     background-color: transparent;
     color: var(--cream);
-    border: 1px solid rgba(203,162,88,0.65);
+    border: 2px solid rgba(203,162,88,0.80);
     border-radius: 999px;
     padding: 7px 10px;
     font-weight: 850;
@@ -138,7 +138,7 @@ st.markdown("""
 .stButton > button[kind="secondary"]:hover {
     background-color: rgba(203,162,88,0.14);
     color: var(--gold-soft);
-    border: 1px solid var(--gold);
+    border: 2px solid var(--gold);
 }
 
 .result-card {
@@ -150,7 +150,7 @@ st.markdown("""
     border-radius: 28px;
     text-align: center;
     margin-top: 14px;
-    border: 1px solid rgba(203,162,88,0.55);
+    border: 2.2px solid rgba(203,162,88,0.90);
     box-shadow: 0 14px 34px rgba(0,0,0,0.48);
 }
 
@@ -192,7 +192,7 @@ st.markdown("""
     margin-top: 12px;
     font-size: 15px;
     line-height: 1.35;
-    border: 1px solid rgba(63,199,216,0.35);
+    border: 2px solid rgba(203,162,88,0.80);
     box-shadow: 0 8px 22px rgba(0,0,0,0.28);
 }
 
@@ -206,7 +206,7 @@ st.markdown("""
     padding: 14px;
     border-radius: 18px;
     margin-top: 10px;
-    border: 1px solid rgba(203,162,88,0.30);
+    border: 2px solid rgba(203,162,88,0.72);
     box-shadow: 0 8px 20px rgba(0,0,0,0.28);
     font-size: 14px;
     line-height: 1.3;
