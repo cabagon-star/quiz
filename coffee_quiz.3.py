@@ -236,7 +236,7 @@ questions = [
         "options": [
             {"value": "Chocolate", "label": "Chocolate", "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500"},
             {"value": "Caramelo", "label": "Caramelo", "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=500"},
-            {"value": "Frutal", "label": "Frutal", "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=500"},
+            {"value": "Frutal", "label": "Frutal / cítrico", "image": "https://images.unsplash.com/photo-1582979512210-99b6a53386f9?w=500"},
             {"value": "Nuez / Avellana", "label": "Nuez / Avellana", "image": "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=500"},
         ]
     },
