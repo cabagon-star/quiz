@@ -83,7 +83,7 @@ st.markdown("""
     min-height: 20px;
 }
 
-.stButton > button {
+.stButton > button[kind="primary"] {
     background-color: #006241;
     color: white;
     border-radius: 999px;
@@ -94,9 +94,27 @@ st.markdown("""
     min-height: 36px;
 }
 
-.stButton > button:hover {
+.stButton > button[kind="primary"]:hover {
     background-color: #1e3932;
     color: white;
+}
+
+.stButton > button[kind="secondary"] {
+    background-color: #f3eadb;
+    color: #1e3932;
+    border: 1px solid #cba258;
+    border-radius: 999px;
+    padding: 7px 10px;
+    font-weight: 850;
+    width: 100%;
+    min-height: 36px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.stButton > button[kind="secondary"]:hover {
+    background-color: #cba258;
+    color: #1e3932;
+    border: 1px solid #cba258;
 }
 
 .result-card {
@@ -167,10 +185,18 @@ st.markdown("""
     margin-top: 14px;
 }
 
+div[data-testid="stImage"] {
+    display: flex;
+    justify-content: center;
+}
+
 div[data-testid="stImage"] img {
     border-radius: 14px;
-    max-height: 92px;
+    width: 100%;
+    height: 92px;
     object-fit: cover;
+    object-position: center center;
+    display: block;
 }
 
 @media (max-width: 600px) {
@@ -226,7 +252,8 @@ div[data-testid="stImage"] img {
     }
 
     div[data-testid="stImage"] img {
-        max-height: 72px;
+        height: 72px;
+        object-position: center center;
     }
 
     .result-name {
@@ -650,10 +677,37 @@ def perfil_usuario(answers):
 
 def build_result_details(bebida_final, bebida_base):
     info = BEVERAGE_INFO.get(bebida_final) or BEVERAGE_INFO.get(bebida_base, {})
-    method = info.get("method", "Café")
     milk = info.get("milk", "Según preferencia")
     intensity = info.get("intensity", "Media")
-    return f"Método: {method} · Leche: {milk} · Intensidad: {intensity}"
+
+    if milk == "Alta":
+        estilo = "Cremoso"
+        leche_texto = "Con leche"
+    elif milk == "Media":
+        estilo = "Balanceado"
+        leche_texto = "Leche media"
+    elif milk == "Baja":
+        estilo = "Intenso"
+        leche_texto = "Poca leche"
+    elif milk == "Sin leche":
+        estilo = "Directo"
+        leche_texto = "Sin leche"
+    else:
+        estilo = "Refrescante" if "Iced" in bebida_final or bebida_final == "Cold Brew" else "Balanceado"
+        leche_texto = "Leche opcional"
+
+    if intensity in ["Baja-media", "Baja"]:
+        intensidad_texto = "Suave"
+    elif intensity == "Media":
+        intensidad_texto = "Equilibrado"
+    elif intensity == "Media-alta":
+        intensidad_texto = "Con carácter"
+    elif intensity == "Alta":
+        intensidad_texto = "Intenso"
+    else:
+        intensidad_texto = "Equilibrado"
+
+    return f"Perfil: {estilo} · {intensidad_texto} · {leche_texto}"
 
 
 def choose_option(q):
@@ -671,7 +725,8 @@ def choose_option(q):
             if st.button(
                 "Elegir",
                 key=f"{q['key']}_{option['value']}",
-                use_container_width=True
+                use_container_width=True,
+                type="primary"
             ):
                 st.session_state.answers[q["key"]] = option["value"]
                 st.session_state.step += 1
@@ -714,12 +769,12 @@ if current_step < total_steps:
     nav_cols = st.columns([1, 1])
     with nav_cols[0]:
         if current_step > 0:
-            if st.button("⬅️ Atrás", use_container_width=True):
+            if st.button("⬅️ Atrás", use_container_width=True, type="secondary"):
                 st.session_state.step -= 1
                 st.rerun()
     with nav_cols[1]:
         if current_step > 0:
-            if st.button("🔁 Reiniciar", use_container_width=True):
+            if st.button("🔁 Reiniciar", use_container_width=True, type="secondary"):
                 reset_quiz()
 
 else:
@@ -781,5 +836,5 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("🔁 Hacer el quiz otra vez", use_container_width=True):
+    if st.button("🔁 Hacer el quiz otra vez", use_container_width=True, type="primary"):
         reset_quiz()
