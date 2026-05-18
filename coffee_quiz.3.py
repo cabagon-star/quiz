@@ -672,7 +672,7 @@ def perfil_usuario(answers):
         "Mucho": "dulce"
     }.get(dulzor, "balanceado")
 
-    return f"Te va mejor un café {base}, {sabor} y {dulzor_texto}. Ideal con textura {textura.lower()} y servido {temperatura.lower()}."
+   return f"Un café {base}, {sabor} y {dulzor_texto}. Ideal para disfrutar {temperatura.lower()}."
 
 
 def build_result_details(bebida_final, bebida_base):
@@ -805,7 +805,7 @@ else:
 
     st.markdown(f"""
     <div class="profile-card">
-        <b>Así te gusta el café:</b><br>
+        <b>El café que va contigo:</b><br>
         {perfil_usuario(st.session_state.answers)}
     </div>
     """, unsafe_allow_html=True)
