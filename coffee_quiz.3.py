@@ -1,10 +1,18 @@
 import streamlit as st
 
+# =========================
+# CONFIG
+# =========================
+
 st.set_page_config(
     page_title="Coffee Match",
     page_icon="☕",
     layout="centered"
 )
+
+# =========================
+# CSS
+# =========================
 
 st.markdown("""
 <style>
@@ -23,105 +31,118 @@ footer {
     visibility: hidden;
 }
 
-/* ===== ESPACIADO GENERAL ===== */
+/* ===== ESPACIADO ===== */
 
 .block-container {
     padding-top: 2rem !important;
-    padding-bottom: 2rem;
-    max-width: 800px;
+    max-width: 850px;
 }
 
-/* ===== FONDO GENERAL ===== */
+/* ===== FONDO ===== */
 
 .stApp {
     background: linear-gradient(
         180deg,
-        #0f0f0f 0%,
-        #171717 100%
+        #050505 0%,
+        #101010 100%
     );
-    color: white;
 }
 
 /* ===== HERO ===== */
 
 .hero {
+
     background: linear-gradient(
         135deg,
-        #1b1b1b 0%,
-        #111111 100%
+        #171717 0%,
+        #0f0f0f 100%
     );
-    
-    border: 1px solid rgba(212,175,55,0.15);
 
-    padding: 28px;
+    border-radius: 34px;
 
-    border-radius: 28px;
+    padding: 42px;
+
+    margin-bottom: 28px;
+
+    border: 1px solid rgba(212,175,55,0.18);
+
+    box-shadow: 0 10px 45px rgba(0,0,0,0.45);
 
     text-align: center;
-
-    margin-top: 10px;
-    margin-bottom: 25px;
-
-    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
 }
 
 /* ===== TITULO ===== */
 
 .hero-title {
-    font-size: 42px;
-    font-weight: 800;
+
     color: #D4AF37;
-    margin-bottom: 10px;
+
+    font-size: 60px;
+
+    font-weight: 800;
+
+    margin-bottom: 12px;
+
     letter-spacing: 1px;
 }
 
 /* ===== SUBTITULO ===== */
 
 .hero-subtitle {
-    font-size: 18px;
-    color: #d7d7d7;
-    margin-bottom: 10px;
+
+    color: #d9d9d9;
+
+    font-size: 22px;
+
+    font-weight: 400;
 }
 
-/* ===== PREGUNTA ===== */
+/* ===== QUESTION BOX ===== */
 
 .question-box {
-    background-color: #1a1a1a;
 
-    border-radius: 22px;
+    background: linear-gradient(
+        135deg,
+        #1a1a1a 0%,
+        #121212 100%
+    );
 
-    padding: 24px;
+    border-radius: 30px;
+
+    padding: 34px;
 
     margin-bottom: 22px;
 
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.05);
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
 }
 
-/* ===== TITULO PREGUNTA ===== */
+/* ===== QUESTION TITLE ===== */
 
 .question-title {
+
     color: #D4AF37;
 
-    font-size: 30px;
+    font-size: 34px;
 
     font-weight: 700;
 
     margin-bottom: 10px;
 }
 
-/* ===== TEXTO PREGUNTA ===== */
+/* ===== QUESTION SUBTITLE ===== */
 
 .question-subtitle {
-    color: #d0d0d0;
 
-    font-size: 17px;
+    color: #cfcfcf;
 
-    margin-bottom: 12px;
+    font-size: 18px;
 }
 
 /* ===== BOTONES ===== */
 
-.stButton>button {
+.stButton > button {
 
     width: 100%;
 
@@ -133,73 +154,73 @@ footer {
 
     border-radius: 18px;
 
-    padding: 14px;
+    padding: 16px;
 
     font-size: 18px;
 
     font-weight: 700;
 
-    transition: 0.3s;
+    margin-top: 10px;
 
-    margin-top: 8px;
+    transition: 0.3s ease;
 }
 
 /* ===== HOVER ===== */
 
-.stButton>button:hover {
+.stButton > button:hover {
 
-    background-color: #f0cd63;
-
-    transform: scale(1.02);
+    background-color: #f2cf69;
 
     color: black;
+
+    transform: scale(1.02);
 }
 
-/* ===== RESULTADO ===== */
+/* ===== RESULT BOX ===== */
 
 .result-box {
 
     background: linear-gradient(
         135deg,
-        #1b1b1b 0%,
-        #121212 100%
+        #181818 0%,
+        #101010 100%
     );
 
-    border-radius: 28px;
+    border-radius: 30px;
 
-    padding: 30px;
+    padding: 34px;
 
-    margin-top: 20px;
+    margin-top: 28px;
 
     border: 1px solid rgba(212,175,55,0.2);
 
     text-align: center;
 
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
 }
 
-/* ===== TITULO RESULTADO ===== */
+/* ===== RESULT TITLE ===== */
 
 .result-title {
 
     color: #D4AF37;
 
-    font-size: 38px;
+    font-size: 42px;
 
     font-weight: 800;
 
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
-/* ===== TEXTO RESULTADO ===== */
+/* ===== RESULT TEXT ===== */
 
 .result-text {
 
     color: white;
 
-    font-size: 20px;
+    font-size: 21px;
 
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 /* ===== MOBILE ===== */
@@ -207,30 +228,45 @@ footer {
 @media (max-width: 768px) {
 
     .hero-title {
-        font-size: 34px;
+        font-size: 42px;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
     }
 
     .question-title {
-        font-size: 25px;
+        font-size: 28px;
+    }
+
+    .question-subtitle {
+        font-size: 16px;
     }
 
     .result-title {
-        font-size: 30px;
+        font-size: 34px;
     }
 
-    .stButton>button {
-        font-size: 17px;
-        padding: 13px;
+    .result-text {
+        font-size: 18px;
+    }
+
+    .stButton > button {
+        font-size: 16px;
+        padding: 14px;
     }
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ===== HERO =====
+# =========================
+# HERO
+# =========================
 
 st.markdown("""
 <div class="hero">
+
     <div class="hero-title">
         Coffee Match ☕
     </div>
@@ -238,10 +274,13 @@ st.markdown("""
     <div class="hero-subtitle">
         Descubre el café que realmente va contigo
     </div>
+
 </div>
 """, unsafe_allow_html=True)
 
-# ===== PREGUNTA =====
+# =========================
+# QUESTION
+# =========================
 
 st.markdown("""
 <div class="question-box">
@@ -257,7 +296,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ===== BOTONES =====
+# =========================
+# BUTTONS
+# =========================
 
 col1, col2 = st.columns(2)
 
@@ -275,7 +316,9 @@ with col3:
 with col4:
     st.button("Nada dulce")
 
-# ===== RESULTADO DEMO =====
+# =========================
+# RESULT DEMO
+# =========================
 
 st.markdown("""
 <div class="result-box">
