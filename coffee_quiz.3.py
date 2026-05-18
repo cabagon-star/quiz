@@ -40,7 +40,7 @@ st.markdown("""
     color: var(--text);
     text-align: center;
     margin-bottom: 12px;
-    border: 1px solid rgba(203,162,88,0.55);
+    border: 2.2px solid rgba(203,162,88,0.90);
     box-shadow: 0 14px 34px rgba(0,0,0,0.45);
 }
 
@@ -61,7 +61,7 @@ st.markdown("""
     background: linear-gradient(180deg, #181818 0%, #111111 100%);
     padding: 14px 16px;
     border-radius: 20px;
-    border: 1px solid rgba(203,162,88,0.42);
+    border: 2px solid rgba(203,162,88,0.80);
     box-shadow: 0 8px 24px rgba(0,0,0,0.35);
     margin-bottom: 10px;
 }
