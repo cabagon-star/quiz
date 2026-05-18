@@ -644,7 +644,6 @@ def descripcion(bebida):
 
 def perfil_usuario(answers):
     leche = answers["leche"]
-    textura = answers["textura"]
     temperatura = answers["temperatura"]
     aroma = answers["aroma"]
     dulzor = answers["dulzor"]
@@ -672,7 +671,7 @@ def perfil_usuario(answers):
         "Mucho": "dulce"
     }.get(dulzor, "balanceado")
 
-   return f"Un café {base}, {sabor} y {dulzor_texto}. Ideal para disfrutar {temperatura.lower()}."
+    return f"Un café {base}, {sabor} y {dulzor_texto}. Ideal para disfrutar {temperatura.lower()}."
 
 
 def build_result_details(bebida_final, bebida_base):
