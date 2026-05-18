@@ -8,8 +8,23 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+:root {
+    --black: #0b0b0b;
+    --card: #151515;
+    --card-soft: #1d1d1d;
+    --gold: #cba258;
+    --gold-soft: #e1c178;
+    --cream: #f6f1e8;
+    --text: #ffffff;
+    --muted: #d8d0c3;
+    --blue: #3fc7d8;
+}
+
 .stApp {
-    background: linear-gradient(180deg, #f6f1e8 0%, #ffffff 100%);
+    background:
+        radial-gradient(circle at top, rgba(203,162,88,0.16) 0%, rgba(11,11,11,0) 32%),
+        linear-gradient(180deg, #0b0b0b 0%, #111111 55%, #050505 100%);
+    color: var(--text);
 }
 
 .block-container {
@@ -19,38 +34,40 @@ st.markdown("""
 }
 
 .hero {
-    background: linear-gradient(135deg, #006241 0%, #1e3932 100%);
+    background: linear-gradient(135deg, #111111 0%, #1d1d1d 100%);
     padding: 20px 18px;
     border-radius: 24px;
-    color: white;
+    color: var(--text);
     text-align: center;
     margin-bottom: 12px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.14);
+    border: 1px solid rgba(203,162,88,0.55);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.45);
 }
 
 .hero-title {
     font-size: 34px;
     font-weight: 900;
     line-height: 1.05;
+    letter-spacing: -0.5px;
 }
 
 .hero-subtitle {
     font-size: 15px;
-    opacity: 0.96;
+    color: var(--muted);
     margin-top: 6px;
 }
 
 .question-card {
-    background-color: white;
+    background: linear-gradient(180deg, #181818 0%, #111111 100%);
     padding: 14px 16px;
     border-radius: 20px;
-    border: 1px solid #e5dfd4;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+    border: 1px solid rgba(203,162,88,0.42);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
     margin-bottom: 10px;
 }
 
 .question-title {
-    color: #1e3932;
+    color: var(--text);
     font-size: 22px;
     font-weight: 900;
     text-align: center;
@@ -58,24 +75,29 @@ st.markdown("""
 }
 
 .helper {
-    color: #6f6259;
+    color: var(--muted);
     text-align: center;
     font-size: 13px;
     margin-top: 4px;
 }
 
 .option-card {
-    background-color: white;
-    border: 1px solid #ded6c8;
+    background: linear-gradient(180deg, #191919 0%, #101010 100%);
+    border: 1px solid rgba(216,208,195,0.18);
     border-radius: 18px;
     padding: 7px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.28);
     margin-bottom: 8px;
 }
 
+.option-card:hover {
+    border: 1px solid rgba(203,162,88,0.70);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.38);
+}
+
 .option-title {
-    color: #1e3932;
+    color: var(--cream);
     font-size: 14px;
     font-weight: 850;
     margin-top: 4px;
@@ -84,52 +106,57 @@ st.markdown("""
 }
 
 .stButton > button[kind="primary"] {
-    background-color: #006241;
-    color: white;
+    background: linear-gradient(135deg, #cba258 0%, #e1c178 100%);
+    color: #0b0b0b;
     border-radius: 999px;
-    border: none;
+    border: 1px solid rgba(203,162,88,0.9);
     padding: 7px 10px;
-    font-weight: 850;
+    font-weight: 900;
     width: 100%;
     min-height: 36px;
+    box-shadow: 0 6px 16px rgba(203,162,88,0.18);
 }
 
 .stButton > button[kind="primary"]:hover {
-    background-color: #1e3932;
-    color: white;
+    background: #f0d28a;
+    color: #0b0b0b;
+    border: 1px solid #f0d28a;
 }
 
 .stButton > button[kind="secondary"] {
-    background-color: #f3eadb;
-    color: #1e3932;
-    border: 1px solid #cba258;
+    background-color: transparent;
+    color: var(--cream);
+    border: 1px solid rgba(203,162,88,0.65);
     border-radius: 999px;
     padding: 7px 10px;
     font-weight: 850;
     width: 100%;
     min-height: 36px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
 }
 
 .stButton > button[kind="secondary"]:hover {
-    background-color: #cba258;
-    color: #1e3932;
-    border: 1px solid #cba258;
+    background-color: rgba(203,162,88,0.14);
+    color: var(--gold-soft);
+    border: 1px solid var(--gold);
 }
 
 .result-card {
-    background: linear-gradient(135deg, #006241 0%, #1e3932 100%);
-    color: white;
+    background:
+        radial-gradient(circle at top, rgba(63,199,216,0.16) 0%, rgba(0,0,0,0) 34%),
+        linear-gradient(135deg, #151515 0%, #050505 100%);
+    color: var(--text);
     padding: 24px 18px;
     border-radius: 28px;
     text-align: center;
     margin-top: 14px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.16);
+    border: 1px solid rgba(203,162,88,0.55);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.48);
 }
 
 .badge {
-    background-color: #cba258;
-    color: #1e3932;
+    background: linear-gradient(135deg, #cba258 0%, #e1c178 100%);
+    color: #0b0b0b;
     padding: 6px 13px;
     border-radius: 999px;
     font-weight: 900;
@@ -146,7 +173,7 @@ st.markdown("""
 
 .match {
     font-size: 16px;
-    opacity: 0.95;
+    color: var(--muted);
     margin-top: 6px;
 }
 
@@ -154,32 +181,43 @@ st.markdown("""
     font-size: 15px;
     line-height: 1.35;
     margin-top: 10px;
+    color: var(--cream);
 }
 
 .profile-card {
-    background-color: #d4e9e2;
-    color: #1e3932;
+    background: linear-gradient(180deg, #171717 0%, #101010 100%);
+    color: var(--cream);
     padding: 16px;
     border-radius: 20px;
     margin-top: 12px;
     font-size: 15px;
     line-height: 1.35;
+    border: 1px solid rgba(63,199,216,0.35);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.28);
+}
+
+.profile-card b {
+    color: var(--gold-soft);
 }
 
 .alt-card {
-    background-color: white;
-    color: #1e3932;
+    background: linear-gradient(180deg, #171717 0%, #101010 100%);
+    color: var(--cream);
     padding: 14px;
     border-radius: 18px;
     margin-top: 10px;
-    border: 1px solid #d8d0c3;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    border: 1px solid rgba(203,162,88,0.30);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.28);
     font-size: 14px;
     line-height: 1.3;
 }
 
+.alt-card b {
+    color: var(--gold-soft);
+}
+
 .small-note {
-    color: #6f6259;
+    color: var(--muted);
     font-size: 13px;
     text-align: center;
     margin-top: 14px;
@@ -197,6 +235,11 @@ div[data-testid="stImage"] img {
     object-fit: cover;
     object-position: center center;
     display: block;
+    filter: saturate(0.92) contrast(1.05) brightness(0.92);
+}
+
+.stProgress > div > div > div > div {
+    background-color: var(--gold);
 }
 
 @media (max-width: 600px) {
