@@ -203,7 +203,7 @@ div[data-testid="stImage"] img {
     .block-container {
         padding-left: 0.8rem;
         padding-right: 0.8rem;
-        padding-top: 0.8rem;
+        padding-top: 4.5rem;
     }
 
     .hero {
