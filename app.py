@@ -41,15 +41,15 @@ st.markdown("""
 <style>
 
 /* =========================================================
-   PÁGINA
+   GENERAL
 ========================================================= */
 
 .stApp {
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(0, 210, 240, 0.08),
-            transparent 28%
+            rgba(0, 210, 240, 0.07),
+            transparent 24%
         ),
         linear-gradient(
             180deg,
@@ -61,15 +61,12 @@ st.markdown("""
 }
 
 .block-container {
-    max-width: 760px;
-    padding-top: 32px;
-    padding-bottom: 70px;
+    max-width: 720px;
+    padding-top: 18px;
+    padding-bottom: 50px;
 }
 
-#MainMenu {
-    visibility: hidden;
-}
-
+#MainMenu,
 footer {
     visibility: hidden;
 }
@@ -80,73 +77,42 @@ header {
 
 
 /* =========================================================
-   LOGO
+   CABECERA COMPACTA
 ========================================================= */
 
-div[data-testid="stImage"] img {
-    border-radius: 28px;
-
-    border:
-        1px solid
-        rgba(211, 155, 38, 0.55);
-
-    box-shadow:
-        0 16px 38px
-        rgba(0, 0, 0, 0.55);
-}
-
-
-/* =========================================================
-   MARCA
-========================================================= */
-
-.brand-title {
+.brand-mini {
     text-align: center;
-
-    font-size: 42px;
-    font-weight: 800;
-
-    letter-spacing: -1.3px;
-
-    color: #FFFFFF;
-
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 18px;
 }
 
-.brand-title span {
+.brand-name {
+    font-size: 24px;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: -0.6px;
+    margin-top: 6px;
+}
+
+.brand-name span {
     color: #00D5EE;
 }
 
-.brand-subtitle {
-    text-align: center;
-
-    color: #C8C8C8;
-
-    font-size: 15px;
-
-    margin-bottom: 24px;
+.brand-tagline {
+    color: #AFAFAF;
+    font-size: 12px;
+    margin-top: 2px;
 }
 
-.gold-line {
-    width: 130px;
-    height: 3px;
+div[data-testid="stImage"] img {
+    border-radius: 22px;
 
-    margin:
-        0 auto
-        38px auto;
+    border:
+        1px solid
+        rgba(211,155,38,0.52);
 
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #D39B26,
-            #FFD43B,
-            #D39B26,
-            transparent
-        );
+    box-shadow:
+        0 10px 28px
+        rgba(0,0,0,0.50);
 }
 
 
@@ -159,31 +125,27 @@ div[data-testid="stImage"] img {
     justify-content: space-between;
     align-items: center;
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
 
-    letter-spacing: 0.9px;
+    letter-spacing: 0.7px;
 
-    color: #D8B15D;
+    color: #C8A85A;
 
-    margin-bottom: 9px;
+    margin-bottom: 7px;
 }
 
 .progress-bg {
     width: 100%;
-    height: 8px;
+    height: 6px;
 
     border-radius: 999px;
 
-    background: #191919;
-
-    border:
-        1px solid
-        rgba(211, 155, 38, 0.30);
+    background: #1B1B1B;
 
     overflow: hidden;
 
-    margin-bottom: 28px;
+    margin-bottom: 18px;
 }
 
 .progress-fill {
@@ -194,13 +156,15 @@ div[data-testid="stImage"] img {
     background:
         linear-gradient(
             90deg,
-            #C78A17,
+            #C88C1D,
             #FFD43B
         );
 
     box-shadow:
-        0 0 14px
-        rgba(255, 212, 59, 0.35);
+        0 0 10px
+        rgba(255,212,59,0.30);
+
+    transition: width 0.25s ease;
 }
 
 
@@ -209,249 +173,412 @@ div[data-testid="stImage"] img {
 ========================================================= */
 
 .question-card {
-    background: #0D0D0D;
+    background: #0C0C0C;
 
     border:
         1px solid
-        rgba(211, 155, 38, 0.42);
+        rgba(211,155,38,0.38);
 
-    border-radius: 28px;
+    border-radius: 24px;
 
-    padding: 34px;
+    padding: 25px 26px;
 
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 
     box-shadow:
-        0 18px 42px
-        rgba(0, 0, 0, 0.40);
+        0 14px 35px
+        rgba(0,0,0,0.38);
 }
 
 .question-number {
     color: #00D5EE;
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
 
-    letter-spacing: 1.4px;
+    letter-spacing: 1.2px;
 
-    margin-bottom: 14px;
+    margin-bottom: 8px;
 }
 
 .question-title {
     color: #FFFFFF;
 
-    font-size: 28px;
+    font-size: 27px;
     font-weight: 760;
 
-    line-height: 1.25;
+    line-height: 1.18;
 
     letter-spacing: -0.5px;
-
-    margin-bottom: 10px;
-}
-
-.question-helper {
-    color: #BEBEBE;
-
-    font-size: 14px;
 }
 
 
 /* =========================================================
-   OPCIONES
+   OPCIONES COMO TARJETAS
 ========================================================= */
 
 div[role="radiogroup"] {
-    gap: 8px;
+    gap: 7px;
 }
 
 div[role="radiogroup"] > label {
-    background: #111111;
+
+    background: #101010;
 
     border:
         1px solid
-        rgba(255, 255, 255, 0.11);
-
-    border-radius: 17px;
-
-    padding: 15px 18px;
-
-    margin-bottom: 8px;
-
-    min-height: 58px;
-
-    color: #FFFFFF;
-
-    font-size: 16px;
-
-    transition: 0.15s ease;
-}
-
-div[role="radiogroup"] > label:hover {
-    border-color: #00D5EE;
-
-    background: #101A1C;
-}
-
-div[role="radiogroup"] p {
-    color: #F5F5F5 !important;
-}
-
-
-/* =========================================================
-   BOTONES
-========================================================= */
-
-div.stButton > button {
-    width: 100%;
-
-    min-height: 54px;
+        rgba(255,255,255,0.10);
 
     border-radius: 16px;
 
-    border: 1px solid #D39B26;
+    padding: 14px 16px;
 
-    background:
-        linear-gradient(
-            180deg,
-            #D39B26 0%,
-            #A97112 100%
-        );
+    margin-bottom: 5px;
 
-    color: #FFFFFF;
+    min-height: 54px;
 
-    font-size: 15px;
-
-    font-weight: 750;
-
-    margin-top: 8px;
-
-    transition: 0.15s ease;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
 }
 
-div.stButton > button:hover {
+div[role="radiogroup"] > label:hover {
+
     border-color: #00D5EE;
+
+    background: #10191B;
+
+    transform: translateY(-1px);
+}
+
+
+/* opción seleccionada */
+
+div[role="radiogroup"] > label:has(input:checked) {
+
+    border-color: #D9A52D;
 
     background:
         linear-gradient(
-            180deg,
-            #00D5EE,
-            #00A9C1
+            90deg,
+            rgba(211,155,38,0.15),
+            rgba(0,213,238,0.05)
         );
 
-    color: #061013;
+    box-shadow:
+        0 0 0 1px
+        rgba(211,155,38,0.08);
+}
+
+
+div[role="radiogroup"] p {
+
+    color: #F6F6F6 !important;
+
+    font-size: 16px !important;
+
+    font-weight: 550 !important;
 }
 
 
 /* =========================================================
-   RESULTADOS: HEADER
+   BOTONES DE NAVEGACIÓN
 ========================================================= */
 
-.result-header {
-    background: #090909;
+div.stButton > button {
+
+    width: 100%;
+
+    min-height: 45px;
+
+    border-radius: 14px;
 
     border:
-        1.5px solid
-        #D39B26;
+        1px solid
+        rgba(211,155,38,0.50);
 
-    border-radius: 28px;
+    background: #101010;
 
-    padding: 34px;
+    color: #D4D4D4;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    margin-top: 6px;
+}
+
+div.stButton > button:hover {
+
+    border-color: #00D5EE;
+
+    color: #FFFFFF;
+
+    background: #10191B;
+}
+
+
+/* =========================================================
+   RESULTADOS
+========================================================= */
+
+.result-intro {
 
     text-align: center;
 
-    margin-bottom: 28px;
-
-    box-shadow:
-        0 18px 42px
-        rgba(0, 0, 0, 0.45);
+    margin-bottom: 20px;
 }
 
-.result-label {
+.result-kicker {
+
     color: #00D5EE;
 
-    font-size: 12px;
+    font-size: 11px;
 
     font-weight: 800;
 
     letter-spacing: 1.5px;
-
-    margin-bottom: 10px;
 }
 
-.result-title {
+.result-heading {
+
     color: #FFFFFF;
 
     font-size: 31px;
 
     font-weight: 800;
 
-    margin-bottom: 7px;
-}
+    letter-spacing: -0.8px;
 
-.result-subtitle {
-    color: #BDBDBD;
-
-    font-size: 14px;
+    margin-top: 4px;
 }
 
 
 /* =========================================================
-   RESULTADOS: CAJA
+   COMPRA RÁPIDA
 ========================================================= */
 
-.result-box {
+.buy-now {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(211,155,38,0.16),
+            rgba(0,213,238,0.06)
+        );
+
+    border:
+        1.5px solid
+        #D39B26;
+
+    border-radius: 26px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 15px 38px
+        rgba(0,0,0,0.42);
+}
+
+.buy-label {
+
+    color: #FFD348;
+
+    font-size: 11px;
+
+    font-weight: 850;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 8px;
+}
+
+.buy-title {
+
+    color: #FFFFFF;
+
+    font-size: 29px;
+
+    font-weight: 820;
+
+    line-height: 1.1;
+
+    letter-spacing: -0.5px;
+
+    margin-bottom: 8px;
+}
+
+.buy-description {
+
+    color: #D4D4D4;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   TARJETAS DE RECOMENDACIÓN
+========================================================= */
+
+.recommendation-card {
+
     background: #0D0D0D;
 
     border:
         1px solid
-        rgba(211, 155, 38, 0.55);
+        rgba(211,155,38,0.30);
 
-    border-radius: 24px;
+    border-radius: 23px;
 
-    padding: 26px;
+    padding: 23px;
 
-    margin-top: 10px;
-    margin-bottom: 22px;
+    margin-bottom: 15px;
 
     box-shadow:
-        0 12px 32px
-        rgba(0, 0, 0, 0.40);
+        0 11px 28px
+        rgba(0,0,0,0.32);
 }
 
-.result-box pre {
-    margin: 0;
+.recommendation-card.primary {
 
-    white-space: pre-wrap;
+    border:
+        1.5px solid
+        #D39B26;
+}
 
-    word-wrap: break-word;
+.card-top {
 
-    overflow-wrap: anywhere;
+    display: flex;
 
-    color: #F5F1E8 !important;
+    justify-content: space-between;
 
-    font-size: 15px;
+    gap: 16px;
 
-    line-height: 1.75;
+    align-items: flex-start;
 
-    font-family:
-        "Courier New",
-        monospace;
+    margin-bottom: 15px;
+}
+
+.rank-label {
+
+    color: #00D5EE;
+
+    font-size: 10px;
+
+    font-weight: 850;
+
+    letter-spacing: 1.2px;
+
+    margin-bottom: 5px;
+}
+
+.coffee-name {
+
+    color: #FFFFFF;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    line-height: 1.15;
+}
+
+.match-score {
+
+    white-space: nowrap;
+
+    color: #FFD348;
+
+    font-size: 14px;
+
+    font-weight: 800;
 }
 
 
 /* =========================================================
-   ALERTAS
+   ATRIBUTOS
 ========================================================= */
 
-div[data-baseweb="notification"] {
-    background: #111111;
+.quick-meta {
 
-    border:
-        1px solid
-        #D39B26;
+    color: #BDBDBD;
 
-    color: white;
+    font-size: 13px;
+
+    margin-bottom: 15px;
+}
+
+.attribute-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap: 8px;
+}
+
+.attribute {
+
+    background: #151515;
+
+    border-radius: 12px;
+
+    padding: 10px 12px;
+}
+
+.attribute-label {
+
+    color: #858585;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 2px;
+}
+
+.attribute-value {
+
+    color: #F2F2F2;
+
+    font-size: 13px;
+
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   TIP
+========================================================= */
+
+.coffee-tip {
+
+    margin-top: 14px;
+
+    background:
+        rgba(0,213,238,0.07);
+
+    border-left:
+        3px solid
+        #00D5EE;
+
+    border-radius: 8px;
+
+    padding: 11px 13px;
+
+    color: #DCDCDC;
+
+    font-size: 12px;
+
+    line-height: 1.45;
 }
 
 
@@ -460,15 +587,59 @@ div[data-baseweb="notification"] {
 ========================================================= */
 
 .footer-text {
+
     text-align: center;
 
-    color: #8E8E8E;
+    color: #707070;
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 0.7px;
 
-    margin-top: 40px;
+    margin-top: 28px;
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 640px) {
+
+    .block-container {
+        padding:
+            12px 16px
+            35px 16px;
+    }
+
+    .question-card {
+        padding: 22px 20px;
+    }
+
+    .question-title {
+        font-size: 24px;
+    }
+
+    div[role="radiogroup"] > label {
+        min-height: 52px;
+        padding: 13px 14px;
+    }
+
+    .result-heading {
+        font-size: 27px;
+    }
+
+    .buy-title {
+        font-size: 25px;
+    }
+
+    .coffee-name {
+        font-size: 20px;
+    }
+
+    .attribute-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 </style>
@@ -490,51 +661,6 @@ if "finished" not in st.session_state:
 
 
 # ============================================================
-# LOGO CENTRADO
-# ============================================================
-
-if LOGO_PATH.exists():
-
-    col_left, col_center, col_right = st.columns(
-        [1, 2, 1]
-    )
-
-    with col_center:
-
-        st.image(
-            str(LOGO_PATH),
-            use_container_width=True
-        )
-
-else:
-
-    st.error(
-        "No encontré Blue_coffee.png. "
-        f"Debe estar en: {LOGO_PATH}"
-    )
-
-
-# ============================================================
-# MARCA
-# ============================================================
-
-brand_html = (
-    '<div class="brand-title">'
-    'Coffee<span>Match</span>'
-    '</div>'
-    '<div class="brand-subtitle">'
-    'Descubre el café que mejor se adapta a tus gustos.'
-    '</div>'
-    '<div class="gold-line"></div>'
-)
-
-st.markdown(
-    brand_html,
-    unsafe_allow_html=True
-)
-
-
-# ============================================================
 # SECUENCIA DINÁMICA
 # ============================================================
 
@@ -544,8 +670,8 @@ def get_question_sequence():
         questions.keys()
     )
 
-    # P9 es la pregunta 7.1.
-    # Solo aparece si P8 = A veces o Sí.
+    # P9 = pregunta 7.1
+    # Solo aparece si P8 = A veces o Sí
 
     if (
         st.session_state.answers.get("P8")
@@ -564,10 +690,125 @@ def get_question_sequence():
     return sequence
 
 
-question_keys = get_question_sequence()
+# ============================================================
+# AVANZAR
+# ============================================================
 
-total_questions = len(
-    question_keys
+def go_forward():
+
+    sequence = get_question_sequence()
+
+    if (
+        st.session_state.step
+        < len(sequence) - 1
+    ):
+
+        st.session_state.step += 1
+
+    else:
+
+        st.session_state.finished = True
+
+
+# ============================================================
+# RESPONDER + AVANZAR AUTOMÁTICAMENTE
+# ============================================================
+
+def answer_question(
+    question_key,
+    widget_key
+):
+
+    selected = (
+        st.session_state.get(
+            widget_key
+        )
+    )
+
+    if selected is None:
+        return
+
+
+    st.session_state.answers[
+        question_key
+    ] = selected
+
+
+    # ========================================================
+    # LÓGICA ORIGINAL DE PREGUNTA 7.1
+    # ========================================================
+
+    if question_key == "P8":
+
+        # No quiere leche
+        if selected == "A":
+
+            st.session_state.answers[
+                "P9"
+            ] = "F"
+
+            if (
+                "answer_P9"
+                in st.session_state
+            ):
+
+                del st.session_state[
+                    "answer_P9"
+                ]
+
+
+        # A veces / Sí
+        else:
+
+            if (
+                st.session_state.answers.get(
+                    "P9"
+                )
+                == "F"
+            ):
+
+                del st.session_state.answers[
+                    "P9"
+                ]
+
+
+    go_forward()
+
+
+# ============================================================
+# LOGO COMPACTO
+# ============================================================
+
+logo_left, logo_center, logo_right = (
+    st.columns(
+        [2.2, 1, 2.2]
+    )
+)
+
+with logo_center:
+
+    if LOGO_PATH.exists():
+
+        st.image(
+            str(LOGO_PATH),
+            use_container_width=True
+        )
+
+
+brand_html = (
+    '<div class="brand-mini">'
+    '<div class="brand-name">'
+    'Coffee<span>Match</span>'
+    '</div>'
+    '<div class="brand-tagline">'
+    'Tu café ideal, sin complicaciones.'
+    '</div>'
+    '</div>'
+)
+
+st.markdown(
+    brand_html,
+    unsafe_allow_html=True
 )
 
 
@@ -577,15 +818,21 @@ total_questions = len(
 
 if not st.session_state.finished:
 
-    step = st.session_state.step
+    question_keys = (
+        get_question_sequence()
+    )
 
-    question_key = question_keys[
-        step
-    ]
+    step = (
+        st.session_state.step
+    )
+
+    question_key = (
+        question_keys[step]
+    )
 
 
     # ========================================================
-    # OBTENER PREGUNTA
+    # PREGUNTA
     # ========================================================
 
     if question_key == "P9":
@@ -602,41 +849,15 @@ if not st.session_state.finished:
 
 
     # ========================================================
-    # PROGRESO
+    # NÚMERO REAL
     # ========================================================
 
-    progress = (
-        (step + 1)
-        / total_questions
-    ) * 100
-
-
-    progress_html = (
-        '<div class="progress-row">'
-        '<span>PERFIL DE CAFÉ</span>'
-        f'<span>{step + 1} / {total_questions}</span>'
-        '</div>'
-        '<div class="progress-bg">'
-        f'<div class="progress-fill" '
-        f'style="width:{progress}%;"></div>'
-        '</div>'
+    first_part = (
+        question_text.split(
+            " ",
+            1
+        )[0]
     )
-
-
-    st.markdown(
-        progress_html,
-        unsafe_allow_html=True
-    )
-
-
-    # ========================================================
-    # NÚMERO REAL DE LA PREGUNTA
-    # ========================================================
-
-    first_part = question_text.split(
-        " ",
-        1
-    )[0]
 
     display_number = (
         first_part.rstrip(".")
@@ -660,6 +881,47 @@ if not st.session_state.finished:
 
 
     # ========================================================
+    # PROGRESO VISUAL
+    # ========================================================
+
+    try:
+
+        main_number = int(
+            float(
+                display_number
+            )
+        )
+
+    except:
+
+        main_number = 1
+
+
+    progress = min(
+        main_number * 10,
+        100
+    )
+
+
+    progress_html = (
+        '<div class="progress-row">'
+        '<span>ENCUENTRA TU MATCH</span>'
+        f'<span>{display_number} / 10</span>'
+        '</div>'
+        '<div class="progress-bg">'
+        f'<div class="progress-fill" '
+        f'style="width:{progress}%;"></div>'
+        '</div>'
+    )
+
+
+    st.markdown(
+        progress_html,
+        unsafe_allow_html=True
+    )
+
+
+    # ========================================================
     # TARJETA DE PREGUNTA
     # ========================================================
 
@@ -669,10 +931,7 @@ if not st.session_state.finished:
         f'PREGUNTA {display_number}'
         '</div>'
         '<div class="question-title">'
-        f'{clean_question}'
-        '</div>'
-        '<div class="question-helper">'
-        'Selecciona la opción que mejor describa tu preferencia.'
+        f'{html.escape(clean_question)}'
         '</div>'
         '</div>'
     )
@@ -700,7 +959,10 @@ if not st.session_state.finished:
     )
 
 
-    if previous_answer in option_keys:
+    if (
+        previous_answer
+        in option_keys
+    ):
 
         default_index = (
             option_keys.index(
@@ -713,7 +975,12 @@ if not st.session_state.finished:
         default_index = None
 
 
-    selected = st.radio(
+    widget_key = (
+        f"answer_{question_key}"
+    )
+
+
+    st.radio(
 
         "Respuesta",
 
@@ -722,118 +989,66 @@ if not st.session_state.finished:
         index=default_index,
 
         format_func=lambda key:
-            f"{key} · {options[key]}",
+            options[key],
 
-        key=f"radio_{question_key}",
+        key=widget_key,
 
-        label_visibility="collapsed"
+        label_visibility="collapsed",
+
+        on_change=answer_question,
+
+        args=(
+            question_key,
+            widget_key
+        )
     )
 
 
     # ========================================================
-    # CONTINUAR
+    # NAVEGACIÓN
     # ========================================================
 
-    if st.button(
+    nav_left, nav_right = (
+        st.columns(
+            [1, 1]
+        )
+    )
 
-        "Continuar →",
-
-        use_container_width=True,
-
-        key=f"continue_{question_key}"
-    ):
-
-        if selected is None:
-
-            st.warning(
-                "Selecciona una respuesta antes de continuar."
-            )
-
-        else:
-
-            st.session_state.answers[
-                question_key
-            ] = selected
-
-
-            # =================================================
-            # PREGUNTA 7.1
-            # =================================================
-
-            if question_key == "P8":
-
-                # NO QUIERE LECHE
-                if selected == "A":
-
-                    st.session_state.answers[
-                        "P9"
-                    ] = "F"
-
-
-                    if (
-                        "radio_P9"
-                        in st.session_state
-                    ):
-
-                        del st.session_state[
-                            "radio_P9"
-                        ]
-
-
-                # A VECES / SÍ
-                else:
-
-                    if (
-                        st.session_state.answers.get(
-                            "P9"
-                        )
-                        == "F"
-                    ):
-
-                        del st.session_state.answers[
-                            "P9"
-                        ]
-
-
-            # Recalcular secuencia
-            new_sequence = (
-                get_question_sequence()
-            )
-
-
-            if (
-                step
-                < len(new_sequence) - 1
-            ):
-
-                st.session_state.step += 1
-
-            else:
-
-                st.session_state.finished = True
-
-
-            st.rerun()
-
-
-    # ========================================================
-    # REGRESAR
-    # ========================================================
 
     if step > 0:
 
-        if st.button(
+        with nav_left:
 
-            "← Regresar",
+            if st.button(
+                "← Atrás",
+                use_container_width=True,
+                key=f"back_{question_key}"
+            ):
 
-            use_container_width=True,
+                st.session_state.step -= 1
 
-            key=f"back_{question_key}"
-        ):
+                st.rerun()
 
-            st.session_state.step -= 1
 
-            st.rerun()
+    # Si volvió a una pregunta ya contestada,
+    # puede avanzar sin cambiar la respuesta.
+
+    if (
+        question_key
+        in st.session_state.answers
+    ):
+
+        with nav_right:
+
+            if st.button(
+                "Siguiente →",
+                use_container_width=True,
+                key=f"forward_{question_key}"
+            ):
+
+                go_forward()
+
+                st.rerun()
 
 
 # ============================================================
@@ -847,10 +1062,6 @@ else:
     )
 
 
-    # ========================================================
-    # MOTOR ORIGINAL
-    # ========================================================
-
     scores = calculate_scores(
         answers
     )
@@ -863,213 +1074,374 @@ else:
 
 
     # ========================================================
-    # HEADER
+    # ENCABEZADO
     # ========================================================
 
-    result_header = (
-        '<div class="result-header">'
-        '<div class="result-label">'
-        'COFFEE MATCH COMPLETADO'
-        '</div>'
-        '<div class="result-title">'
-        'Tus recomendaciones'
-        '</div>'
-        '<div class="result-subtitle">'
-        'Basadas en tus preferencias de café.'
-        '</div>'
-        '</div>'
-    )
-
-
     st.markdown(
-        result_header,
+        (
+            '<div class="result-intro">'
+            '<div class="result-kicker">'
+            'TU COFFEE MATCH'
+            '</div>'
+            '<div class="result-heading">'
+            'Esto es lo que compraría'
+            '</div>'
+            '</div>'
+        ),
         unsafe_allow_html=True
     )
 
 
     # ========================================================
-    # RESULTADOS
-    # SIN SCORES INTERNOS
+    # RECOMENDACIÓN RÁPIDA
     # ========================================================
 
-    output = ""
+    if top:
 
-    output += (
-        "--- RESULTADOS ---\n\n"
-    )
+        best = top[0]
 
+        best_profile = (
+            best["perfil"]
+        )
+
+
+        best_name = html.escape(
+            str(
+                best["bebida"]
+            )
+        )
+
+        origin = html.escape(
+            str(
+                best_profile["origen"]
+            )
+        )
+
+        roast = html.escape(
+            str(
+                best_profile["tostado"]
+            )
+        )
+
+        flavor = html.escape(
+            str(
+                best_profile["sabor"]
+            )
+        )
+
+        acidity = html.escape(
+            str(
+                best_profile["acidez"]
+            )
+        )
+
+        body = html.escape(
+            str(
+                best_profile["cuerpo"]
+            )
+        )
+
+
+        quick_buy_html = (
+            '<div class="buy-now">'
+            '<div class="buy-label">'
+            '⚡ SI VAS A COMPRAR AHORA'
+            '</div>'
+            f'<div class="buy-title">'
+            f'{best_name}'
+            '</div>'
+            '<div class="buy-description">'
+            f'Busca un café de <b>{origin}</b>, '
+            f'tostado <b>{roast}</b>, '
+            f'con perfil <b>{flavor}</b>. '
+            f'Acidez {acidity} y cuerpo {body}.'
+            '</div>'
+            '</div>'
+        )
+
+
+        st.markdown(
+            quick_buy_html,
+            unsafe_allow_html=True
+        )
+
+
+    # ========================================================
+    # TARJETAS
+    # ========================================================
 
     for i, r in enumerate(
         top,
         1
     ):
 
-
-        # TEMPERATURA
-
-        temp_label = (
-
-            "Frío"
-
-            if r["temperatura"] == "iced"
-
-            else "Caliente"
-
-        )
-
-
-        # PORCENTAJE
-
-        score_label = (
-
-            f"{r['score']}%"
-
-            if isinstance(
-                r["score"],
-                (int, float)
-            )
-
-            else r["score"]
-
-        )
-
-
-        # NOMBRE
-
-        output += (
-            f"{i}. "
-            f"{r['bebida']} "
-            f"({temp_label}) "
-            f"({score_label})\n"
-        )
-
-
         p = r["perfil"]
 
 
-        # MÉTODO
+        # ETIQUETA
 
-        output += (
-            f"   Método: "
-            f"{method_names[r['metodo']]}\n"
+        if i == 1:
+
+            rank_text = (
+                "⭐ MEJOR MATCH"
+            )
+
+            card_class = (
+                "recommendation-card primary"
+            )
+
+        elif i == 2:
+
+            rank_text = (
+                "ALTERNATIVA CERCANA"
+            )
+
+            card_class = (
+                "recommendation-card"
+            )
+
+        else:
+
+            rank_text = (
+                "PARA EXPLORAR"
+            )
+
+            card_class = (
+                "recommendation-card"
+            )
+
+
+        # SCORE
+
+        if isinstance(
+            r["score"],
+            (int, float)
+        ):
+
+            score_text = (
+                f"{r['score']}% match"
+            )
+
+        else:
+
+            score_text = (
+                str(
+                    r["score"]
+                )
+            )
+
+
+        # TEMPERATURA
+
+        temperature = (
+            "Frío"
+            if r["temperatura"] == "iced"
+            else "Caliente"
         )
 
 
-        # ORIGEN
-
-        output += (
-            f"   Origen: "
-            f"{p['origen']}\n"
-        )
-
-
-        # PERFIL
-
-        output += (
-            f"   Perfil: "
-            f"{p['sabor']} | "
-            f"Acidez {p['acidez']} | "
-            f"Cuerpo {p['cuerpo']}\n"
-        )
-
-
-        # TOSTADO
-
-        output += (
-            f"   Tostado: "
-            f"{p['tostado']}\n"
-        )
-
-
-        # LECHE
-
-        output += (
-            f"   Leche: "
-            f"{p['leche']}\n"
-        )
-
-
-        # ====================================================
         # SABOR AÑADIDO
-        # ====================================================
 
         if (
             answers.get("P12")
             == "A"
         ):
 
-            output += (
-                "   Sabor añadido: Ninguno\n"
+            added_flavor = (
+                "Ninguno"
             )
 
         else:
 
-            output += (
-                f"   Sabor añadido: "
-                f"{flavor_add_map[answers['P12']]}\n"
+            added_flavor = (
+                flavor_add_map.get(
+                    answers.get("P12"),
+                    "Natural"
+                )
             )
 
 
-        # ====================================================
-        # ETIQUETAS ORIGINALES
-        # ====================================================
+        # ESCAPAR TEXTO
 
-        if i == 1:
-
-            output += (
-                "   ✅ Mejor match contigo\n"
+        bebida = html.escape(
+            str(
+                r["bebida"]
             )
+        )
 
-        elif i == 2:
-
-            output += (
-                "   🔄 Alternativa cercana a lo que tdentifica\n"
+        method = html.escape(
+            str(
+                method_names[
+                    r["metodo"]
+                ]
             )
+        )
 
-        elif i == 3:
-
-            output += (
-                "   🎯 Opción para explorar algo diferente\n"
+        origin = html.escape(
+            str(
+                p["origen"]
             )
+        )
+
+        flavor = html.escape(
+            str(
+                p["sabor"]
+            )
+        )
+
+        acidity = html.escape(
+            str(
+                p["acidez"]
+            )
+        )
+
+        body = html.escape(
+            str(
+                p["cuerpo"]
+            )
+        )
+
+        roast = html.escape(
+            str(
+                p["tostado"]
+            )
+        )
+
+        milk = html.escape(
+            str(
+                p["leche"]
+            )
+        )
+
+        added_flavor = html.escape(
+            str(
+                added_flavor
+            )
+        )
 
 
-        # ====================================================
-        # RECOMENDACIÓN BARISTA
-        # ====================================================
+        # TIP
+
+        tip_html = ""
 
         if p.get(
             "recomendacion"
         ):
 
-            output += (
-                f"   💡 "
-                f"{p['recomendacion'].strip()}\n"
+            tip = html.escape(
+                str(
+                    p[
+                        "recomendacion"
+                    ]
+                ).strip()
+            )
+
+            tip_html = (
+                '<div class="coffee-tip">'
+                f'💡 {tip}'
+                '</div>'
             )
 
 
-        output += "\n"
+        # CARD
+
+        card_html = (
+            f'<div class="{card_class}">'
+            '<div class="card-top">'
+            '<div>'
+            f'<div class="rank-label">'
+            f'{rank_text}'
+            '</div>'
+            f'<div class="coffee-name">'
+            f'{bebida}'
+            '</div>'
+            '</div>'
+            f'<div class="match-score">'
+            f'{score_text}'
+            '</div>'
+            '</div>'
+
+            f'<div class="quick-meta">'
+            f'{method} · {temperature}'
+            '</div>'
+
+            '<div class="attribute-grid">'
+
+            '<div class="attribute">'
+            '<div class="attribute-label">'
+            'ORIGEN'
+            '</div>'
+            f'<div class="attribute-value">'
+            f'{origin}'
+            '</div>'
+            '</div>'
+
+            '<div class="attribute">'
+            '<div class="attribute-label">'
+            'TOSTADO'
+            '</div>'
+            f'<div class="attribute-value">'
+            f'{roast}'
+            '</div>'
+            '</div>'
+
+            '<div class="attribute">'
+            '<div class="attribute-label">'
+            'PERFIL'
+            '</div>'
+            f'<div class="attribute-value">'
+            f'{flavor}'
+            '</div>'
+            '</div>'
+
+            '<div class="attribute">'
+            '<div class="attribute-label">'
+            'ACIDEZ'
+            '</div>'
+            f'<div class="attribute-value">'
+            f'{acidity}'
+            '</div>'
+            '</div>'
+
+            '<div class="attribute">'
+            '<div class="attribute-label">'
+            'CUERPO'
+            '</div>'
+            f'<div class="attribute-value">'
+            f'{body}'
+            '</div>'
+            '</div>'
+
+            '<div class="attribute">'
+            '<div class="attribute-label">'
+            'LECHE'
+            '</div>'
+            f'<div class="attribute-value">'
+            f'{milk}'
+            '</div>'
+            '</div>'
+
+            '<div class="attribute">'
+            '<div class="attribute-label">'
+            'SABOR EXTRA'
+            '</div>'
+            f'<div class="attribute-value">'
+            f'{added_flavor}'
+            '</div>'
+            '</div>'
+
+            '</div>'
+
+            f'{tip_html}'
+
+            '</div>'
+        )
 
 
-    # ========================================================
-    # CAJA DE RESULTADOS
-    # ========================================================
-
-    safe_output = html.escape(
-        output
-    )
-
-
-    result_html = (
-        '<div class="result-box">'
-        f'<pre>{safe_output}</pre>'
-        '</div>'
-    )
-
-
-    st.markdown(
-        result_html,
-        unsafe_allow_html=True
-    )
+        st.markdown(
+            card_html,
+            unsafe_allow_html=True
+        )
 
 
     # ========================================================
@@ -1077,14 +1449,10 @@ else:
     # ========================================================
 
     if st.button(
-
-        "↻ Hacer Coffee Match nuevamente",
-
+        "↻ Volver a hacer el test",
         use_container_width=True,
-
         key="restart_button"
     ):
-
 
         keys_to_delete = [
 
@@ -1093,8 +1461,10 @@ else:
             for key
             in st.session_state.keys()
 
-            if key.startswith(
-                "radio_"
+            if (
+                key.startswith(
+                    "answer_"
+                )
             )
 
         ]
@@ -1121,14 +1491,11 @@ else:
 # FOOTER
 # ============================================================
 
-footer_html = (
-    '<div class="footer-text">'
-    'COFFEE MATCH · PERSONALIZED COFFEE EXPERIENCE'
-    '</div>'
-)
-
-
 st.markdown(
-    footer_html,
+    (
+        '<div class="footer-text">'
+        'COFFEE MATCH · FIND YOUR COFFEE'
+        '</div>'
+    ),
     unsafe_allow_html=True
 )
