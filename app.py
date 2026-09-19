@@ -1,6 +1,7 @@
 import html
 import json
 from pathlib import Path
+from urllib.parse import urlencode
 
 import streamlit as st
 import streamlit.components.v1 as components
@@ -81,7 +82,7 @@ header {
 
 
 /* =========================================================
-   CABECERA COMPACTA
+   CABECERA
 ========================================================= */
 
 .brand-mini {
@@ -108,7 +109,8 @@ header {
 }
 
 div[data-testid="stImage"] img {
-    border-radius: 22px;
+
+    border-radius: 20px;
 
     border:
         1px solid
@@ -125,6 +127,7 @@ div[data-testid="stImage"] img {
 ========================================================= */
 
 .progress-row {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -140,6 +143,7 @@ div[data-testid="stImage"] img {
 }
 
 .progress-bg {
+
     width: 100%;
     height: 6px;
 
@@ -153,6 +157,7 @@ div[data-testid="stImage"] img {
 }
 
 .progress-fill {
+
     height: 100%;
 
     border-radius: 999px;
@@ -177,6 +182,7 @@ div[data-testid="stImage"] img {
 ========================================================= */
 
 .question-card {
+
     background: #0C0C0C;
 
     border:
@@ -195,6 +201,7 @@ div[data-testid="stImage"] img {
 }
 
 .question-number {
+
     color: #00D5EE;
 
     font-size: 11px;
@@ -206,6 +213,7 @@ div[data-testid="stImage"] img {
 }
 
 .question-title {
+
     color: #FFFFFF;
 
     font-size: 27px;
@@ -266,10 +274,6 @@ div[role="radiogroup"] > label:has(input:checked) {
             rgba(211,155,38,0.15),
             rgba(0,213,238,0.05)
         );
-
-    box-shadow:
-        0 0 0 1px
-        rgba(211,155,38,0.08);
 }
 
 div[role="radiogroup"] p {
@@ -316,6 +320,19 @@ div.stButton > button:hover {
     color: #FFFFFF;
 
     background: #10191B;
+}
+
+
+/* link button */
+
+a[data-testid="stBaseLinkButton-primary"],
+a[data-testid="stBaseLinkButton-secondary"] {
+
+    border-radius: 14px !important;
+
+    min-height: 48px;
+
+    font-weight: 700 !important;
 }
 
 
@@ -583,7 +600,7 @@ div.stButton > button:hover {
 
 
 /* =========================================================
-   SEPARADOR SHARE
+   COMPARTIR
 ========================================================= */
 
 .share-title {
@@ -600,6 +617,26 @@ div.stButton > button:hover {
 
     margin-top: 23px;
     margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   RESULTADO COMPARTIDO
+========================================================= */
+
+.shared-note {
+
+    text-align: center;
+
+    color: #AFAFAF;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin:
+        -5px 0
+        20px 0;
 }
 
 
@@ -682,6 +719,287 @@ if "finished" not in st.session_state:
 
 
 # ============================================================
+# LOGO
+# 20% MÁS PEQUEÑO
+# ============================================================
+
+logo_left, logo_center, logo_right = st.columns(
+    [2.3, 0.8, 2.3]
+)
+
+with logo_center:
+
+    if LOGO_PATH.exists():
+
+        st.image(
+            str(LOGO_PATH),
+            use_container_width=True
+        )
+
+
+# ============================================================
+# MARCA
+# ============================================================
+
+brand_html = (
+    '<div class="brand-mini">'
+    '<div class="brand-name">'
+    'Coffee<span>Match</span>'
+    '</div>'
+    '<div class="brand-tagline">'
+    'Tu café ideal, sin complicaciones.'
+    '</div>'
+    '</div>'
+)
+
+st.markdown(
+    brand_html,
+    unsafe_allow_html=True
+)
+
+
+# ============================================================
+# RESULTADO COMPARTIDO
+# ============================================================
+
+shared_result = (
+    st.query_params.get("shared")
+    == "1"
+)
+
+
+if shared_result:
+
+    shared_coffee = st.query_params.get(
+        "coffee",
+        "Coffee Match"
+    )
+
+    shared_origin = st.query_params.get(
+        "origin",
+        ""
+    )
+
+    shared_roast = st.query_params.get(
+        "roast",
+        ""
+    )
+
+    shared_flavor = st.query_params.get(
+        "flavor",
+        ""
+    )
+
+    shared_acidity = st.query_params.get(
+        "acidity",
+        ""
+    )
+
+    shared_body = st.query_params.get(
+        "body",
+        ""
+    )
+
+    shared_method = st.query_params.get(
+        "method",
+        ""
+    )
+
+    shared_temperature = st.query_params.get(
+        "temperature",
+        ""
+    )
+
+    shared_score = st.query_params.get(
+        "score",
+        ""
+    )
+
+
+    # ========================================================
+    # ENCABEZADO
+    # ========================================================
+
+    st.markdown(
+        (
+            '<div class="result-intro">'
+            '<div class="result-kicker">'
+            'COFFEE MATCH COMPARTIDO'
+            '</div>'
+            '<div class="result-heading">'
+            'Este fue su Coffee Match'
+            '</div>'
+            '</div>'
+        ),
+        unsafe_allow_html=True
+    )
+
+
+    st.markdown(
+        (
+            '<div class="shared-note">'
+            'Mira su recomendación y después descubre cuál sería la tuya.'
+            '</div>'
+        ),
+        unsafe_allow_html=True
+    )
+
+
+    # ========================================================
+    # SCORE
+    # ========================================================
+
+    score_html = ""
+
+    if shared_score:
+
+        score_html = (
+            '<div class="match-score">'
+            f'{html.escape(str(shared_score))}% match'
+            '</div>'
+        )
+
+
+    # ========================================================
+    # MÉTODO + TEMPERATURA
+    # ========================================================
+
+    meta_parts = []
+
+    if shared_method:
+        meta_parts.append(
+            html.escape(
+                str(shared_method)
+            )
+        )
+
+    if shared_temperature:
+        meta_parts.append(
+            html.escape(
+                str(shared_temperature)
+            )
+        )
+
+    shared_meta = (
+        " · ".join(
+            meta_parts
+        )
+    )
+
+
+    # ========================================================
+    # TARJETA COMPARTIDA
+    # ========================================================
+
+    shared_card = (
+        '<div class="recommendation-card primary">'
+
+        '<div class="card-top">'
+
+        '<div>'
+
+        '<div class="rank-label">'
+        '⭐ COFFEE MATCH'
+        '</div>'
+
+        '<div class="coffee-name">'
+        f'{html.escape(str(shared_coffee))}'
+        '</div>'
+
+        '</div>'
+
+        f'{score_html}'
+
+        '</div>'
+
+        f'<div class="quick-meta">'
+        f'{shared_meta}'
+        '</div>'
+
+        '<div class="attribute-grid">'
+
+        '<div class="attribute">'
+        '<div class="attribute-label">'
+        'ORIGEN'
+        '</div>'
+        '<div class="attribute-value">'
+        f'{html.escape(str(shared_origin))}'
+        '</div>'
+        '</div>'
+
+        '<div class="attribute">'
+        '<div class="attribute-label">'
+        'TOSTADO'
+        '</div>'
+        '<div class="attribute-value">'
+        f'{html.escape(str(shared_roast))}'
+        '</div>'
+        '</div>'
+
+        '<div class="attribute">'
+        '<div class="attribute-label">'
+        'PERFIL'
+        '</div>'
+        '<div class="attribute-value">'
+        f'{html.escape(str(shared_flavor))}'
+        '</div>'
+        '</div>'
+
+        '<div class="attribute">'
+        '<div class="attribute-label">'
+        'ACIDEZ'
+        '</div>'
+        '<div class="attribute-value">'
+        f'{html.escape(str(shared_acidity))}'
+        '</div>'
+        '</div>'
+
+        '<div class="attribute">'
+        '<div class="attribute-label">'
+        'CUERPO'
+        '</div>'
+        '<div class="attribute-value">'
+        f'{html.escape(str(shared_body))}'
+        '</div>'
+        '</div>'
+
+        '</div>'
+
+        '</div>'
+    )
+
+
+    st.markdown(
+        shared_card,
+        unsafe_allow_html=True
+    )
+
+
+    # ========================================================
+    # HACER SU PROPIO TEST
+    # ========================================================
+
+    st.link_button(
+        "☕ Descubre tu propio Coffee Match",
+        PUBLIC_APP_URL,
+        use_container_width=True
+    )
+
+
+    st.markdown(
+        (
+            '<div class="footer-text">'
+            'COFFEE MATCH · FIND YOUR COFFEE'
+            '</div>'
+        ),
+        unsafe_allow_html=True
+    )
+
+
+    st.stop()
+
+
+# ============================================================
 # SECUENCIA DINÁMICA
 # ============================================================
 
@@ -732,7 +1050,7 @@ def go_forward():
 
 
 # ============================================================
-# RESPONDER + AVANZAR AUTOMÁTICAMENTE
+# RESPONDER + AVANZAR
 # ============================================================
 
 def answer_question(
@@ -756,12 +1074,12 @@ def answer_question(
 
 
     # ========================================================
-    # LÓGICA PREGUNTA 7.1
+    # LÓGICA 7.1
     # ========================================================
 
     if question_key == "P8":
 
-        # No quiere leche
+        # NO QUIERE LECHE
         if selected == "A":
 
             st.session_state.answers[
@@ -778,7 +1096,7 @@ def answer_question(
                 ]
 
 
-        # A veces / Sí
+        # A VECES / SÍ
         else:
 
             if (
@@ -794,43 +1112,6 @@ def answer_question(
 
 
     go_forward()
-
-
-# ============================================================
-# LOGO COMPACTO
-# ============================================================
-
-logo_left, logo_center, logo_right = (
-    st.columns(
-        [2.2, 1, 2.2]
-    )
-)
-
-with logo_center:
-
-    if LOGO_PATH.exists():
-
-        st.image(
-            str(LOGO_PATH),
-            use_container_width=True
-        )
-
-
-brand_html = (
-    '<div class="brand-mini">'
-    '<div class="brand-name">'
-    'Coffee<span>Match</span>'
-    '</div>'
-    '<div class="brand-tagline">'
-    'Tu café ideal, sin complicaciones.'
-    '</div>'
-    '</div>'
-)
-
-st.markdown(
-    brand_html,
-    unsafe_allow_html=True
-)
 
 
 # ============================================================
@@ -853,7 +1134,7 @@ if not st.session_state.finished:
 
 
     # ========================================================
-    # PREGUNTA
+    # OBTENER PREGUNTA
     # ========================================================
 
     if question_key == "P9":
@@ -870,7 +1151,7 @@ if not st.session_state.finished:
 
 
     # ========================================================
-    # NÚMERO REAL
+    # NÚMERO
     # ========================================================
 
     first_part = (
@@ -1111,7 +1392,7 @@ else:
 
 
     # ========================================================
-    # RECOMENDACIÓN RÁPIDA
+    # COMPRA RÁPIDA
     # ========================================================
 
     if top:
@@ -1165,7 +1446,7 @@ else:
             '<div class="buy-label">'
             '⚡ SI VAS A COMPRAR AHORA'
             '</div>'
-            f'<div class="buy-title">'
+            '<div class="buy-title">'
             f'{best_name}'
             '</div>'
             '<div class="buy-description">'
@@ -1185,7 +1466,7 @@ else:
 
 
     # ========================================================
-    # TARJETAS DE RECOMENDACIÓN
+    # TARJETAS DE RECOMENDACIONES
     # ========================================================
 
     for i, r in enumerate(
@@ -1196,7 +1477,9 @@ else:
         p = r["perfil"]
 
 
+        # ====================================================
         # ETIQUETA
+        # ====================================================
 
         if i == 1:
 
@@ -1229,7 +1512,9 @@ else:
             )
 
 
+        # ====================================================
         # SCORE
+        # ====================================================
 
         if isinstance(
             r["score"],
@@ -1249,7 +1534,9 @@ else:
             )
 
 
+        # ====================================================
         # TEMPERATURA
+        # ====================================================
 
         temperature = (
             "Frío"
@@ -1258,7 +1545,9 @@ else:
         )
 
 
+        # ====================================================
         # SABOR EXTRA
+        # ====================================================
 
         if (
             answers.get("P12")
@@ -1279,7 +1568,9 @@ else:
             )
 
 
-        # TEXTOS
+        # ====================================================
+        # TEXTO
+        # ====================================================
 
         bebida = html.escape(
             str(
@@ -1338,7 +1629,9 @@ else:
         )
 
 
+        # ====================================================
         # TIP
+        # ====================================================
 
         tip_html = ""
 
@@ -1361,25 +1654,34 @@ else:
             )
 
 
+        # ====================================================
         # CARD
+        # ====================================================
 
         card_html = (
             f'<div class="{card_class}">'
+
             '<div class="card-top">'
+
             '<div>'
-            f'<div class="rank-label">'
+
+            '<div class="rank-label">'
             f'{rank_text}'
             '</div>'
-            f'<div class="coffee-name">'
+
+            '<div class="coffee-name">'
             f'{bebida}'
             '</div>'
-            '</div>'
-            f'<div class="match-score">'
-            f'{score_text}'
-            '</div>'
+
             '</div>'
 
-            f'<div class="quick-meta">'
+            '<div class="match-score">'
+            f'{score_text}'
+            '</div>'
+
+            '</div>'
+
+            '<div class="quick-meta">'
             f'{method} · {temperature}'
             '</div>'
 
@@ -1389,7 +1691,7 @@ else:
             '<div class="attribute-label">'
             'ORIGEN'
             '</div>'
-            f'<div class="attribute-value">'
+            '<div class="attribute-value">'
             f'{origin}'
             '</div>'
             '</div>'
@@ -1398,7 +1700,7 @@ else:
             '<div class="attribute-label">'
             'TOSTADO'
             '</div>'
-            f'<div class="attribute-value">'
+            '<div class="attribute-value">'
             f'{roast}'
             '</div>'
             '</div>'
@@ -1407,7 +1709,7 @@ else:
             '<div class="attribute-label">'
             'PERFIL'
             '</div>'
-            f'<div class="attribute-value">'
+            '<div class="attribute-value">'
             f'{flavor}'
             '</div>'
             '</div>'
@@ -1416,7 +1718,7 @@ else:
             '<div class="attribute-label">'
             'ACIDEZ'
             '</div>'
-            f'<div class="attribute-value">'
+            '<div class="attribute-value">'
             f'{acidity}'
             '</div>'
             '</div>'
@@ -1425,7 +1727,7 @@ else:
             '<div class="attribute-label">'
             'CUERPO'
             '</div>'
-            f'<div class="attribute-value">'
+            '<div class="attribute-value">'
             f'{body}'
             '</div>'
             '</div>'
@@ -1434,7 +1736,7 @@ else:
             '<div class="attribute-label">'
             'LECHE'
             '</div>'
-            f'<div class="attribute-value">'
+            '<div class="attribute-value">'
             f'{milk}'
             '</div>'
             '</div>'
@@ -1443,7 +1745,7 @@ else:
             '<div class="attribute-label">'
             'SABOR EXTRA'
             '</div>'
-            f'<div class="attribute-value">'
+            '<div class="attribute-value">'
             f'{added_flavor}'
             '</div>'
             '</div>'
@@ -1468,18 +1770,93 @@ else:
 
     if top:
 
-        best_coffee = (
-            top[0]["bebida"]
+        best = top[0]
+
+        best_profile = (
+            best["perfil"]
         )
 
-        best_origin = (
-            top[0]["perfil"]["origen"]
+
+        # ====================================================
+        # SCORE PARA COMPARTIR
+        # ====================================================
+
+        if isinstance(
+            best["score"],
+            (int, float)
+        ):
+
+            share_score = (
+                f"{best['score']:g}"
+            )
+
+        else:
+
+            share_score = ""
+
+
+        # ====================================================
+        # TEMPERATURA
+        # ====================================================
+
+        share_temperature = (
+            "Frío"
+            if best["temperatura"] == "iced"
+            else "Caliente"
         )
 
-        best_roast = (
-            top[0]["perfil"]["tostado"]
+
+        # ====================================================
+        # CREAR URL DEL RESULTADO
+        # ====================================================
+
+        share_params = {
+
+            "shared": "1",
+
+            "coffee":
+                best["bebida"],
+
+            "origin":
+                best_profile["origen"],
+
+            "roast":
+                best_profile["tostado"],
+
+            "flavor":
+                best_profile["sabor"],
+
+            "acidity":
+                best_profile["acidez"],
+
+            "body":
+                best_profile["cuerpo"],
+
+            "method":
+                method_names[
+                    best["metodo"]
+                ],
+
+            "temperature":
+                share_temperature,
+
+            "score":
+                share_score
+        }
+
+
+        share_url = (
+            PUBLIC_APP_URL
+            + "?"
+            + urlencode(
+                share_params
+            )
         )
 
+
+        # ====================================================
+        # TEXTO
+        # ====================================================
 
         share_title = (
             "Mi Coffee Match"
@@ -1487,14 +1864,17 @@ else:
 
 
         share_text = (
-            f"☕ Mi Coffee Match fue: {best_coffee}\n"
-            f"Origen: {best_origin} · Tostado: {best_roast}\n\n"
-            "Descubre cuál es tu café ideal."
+            f"☕ Mi Coffee Match fue: "
+            f"{best['bebida']}\n"
+            f"Origen: {best_profile['origen']} · "
+            f"Tostado: {best_profile['tostado']}\n\n"
+            "Mira mi resultado y descubre cuál es el tuyo."
         )
 
 
-        # Convertimos a JSON para que JavaScript
-        # reciba correctamente acentos, emojis, etc.
+        # ====================================================
+        # CONVERTIR PARA JAVASCRIPT
+        # ====================================================
 
         js_title = json.dumps(
             share_title
@@ -1505,7 +1885,7 @@ else:
         )
 
         js_url = json.dumps(
-            PUBLIC_APP_URL
+            share_url
         )
 
 
@@ -1519,6 +1899,10 @@ else:
         )
 
 
+        # ====================================================
+        # BOTÓN SHARE
+        # ====================================================
+
         components.html(
             f"""
             <style>
@@ -1527,11 +1911,13 @@ else:
                 margin: 0;
                 padding: 0;
                 background: transparent;
+
                 font-family:
                     Arial,
                     Helvetica,
                     sans-serif;
             }}
+
 
             .share-button {{
 
@@ -1554,6 +1940,7 @@ else:
                 color: #FFFFFF;
 
                 font-size: 15px;
+
                 font-weight: 700;
 
                 cursor: pointer;
@@ -1561,6 +1948,7 @@ else:
                 transition:
                     all 0.15s ease;
             }}
+
 
             .share-button:hover {{
 
@@ -1573,6 +1961,7 @@ else:
 
                 color: #061013;
             }}
+
 
             .share-message {{
 
@@ -1609,11 +1998,15 @@ else:
 
             async function shareCoffee() {{
 
-                const title = {js_title};
+                const title =
+                    {js_title};
 
-                const text = {js_text};
+                const text =
+                    {js_text};
 
-                const url = {js_url};
+                const url =
+                    {js_url};
+
 
                 const message =
                     document.getElementById(
@@ -1635,8 +2028,8 @@ else:
 
                     catch (error) {{
 
-                        // Usuario canceló el menú.
-                        // No necesitamos mostrar error.
+                        // Si el usuario cancela,
+                        // no mostramos error.
 
                     }}
 
@@ -1645,7 +2038,9 @@ else:
                 else {{
 
                     const fullText =
-                        text + "\\n" + url;
+                        text
+                        + "\\n"
+                        + url;
 
 
                     try {{
@@ -1667,7 +2062,8 @@ else:
                     catch (error) {{
 
                         message.innerText =
-                            "Copia este enlace: " + url;
+                            "Copia este enlace: "
+                            + url;
 
 
                         message.style.display =
@@ -1687,7 +2083,7 @@ else:
 
 
     # ========================================================
-    # VOLVER A HACER TEST
+    # VOLVER A HACER EL TEST
     # ========================================================
 
     if st.button(
