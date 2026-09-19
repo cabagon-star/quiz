@@ -1,7 +1,9 @@
 import html
+import json
 from pathlib import Path
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 from coffee_quiz_1 import (
     questions,
@@ -19,6 +21,8 @@ from coffee_quiz_1 import (
 
 BASE_DIR = Path(__file__).resolve().parent
 LOGO_PATH = BASE_DIR / "Blue_coffee.png"
+
+PUBLIC_APP_URL = "https://coffeeonematch.streamlit.app"
 
 
 # ============================================================
@@ -214,7 +218,7 @@ div[data-testid="stImage"] img {
 
 
 /* =========================================================
-   OPCIONES COMO TARJETAS
+   OPCIONES
 ========================================================= */
 
 div[role="radiogroup"] {
@@ -252,9 +256,6 @@ div[role="radiogroup"] > label:hover {
     transform: translateY(-1px);
 }
 
-
-/* opción seleccionada */
-
 div[role="radiogroup"] > label:has(input:checked) {
 
     border-color: #D9A52D;
@@ -271,7 +272,6 @@ div[role="radiogroup"] > label:has(input:checked) {
         rgba(211,155,38,0.08);
 }
 
-
 div[role="radiogroup"] p {
 
     color: #F6F6F6 !important;
@@ -283,7 +283,7 @@ div[role="radiogroup"] p {
 
 
 /* =========================================================
-   BOTONES DE NAVEGACIÓN
+   BOTONES
 ========================================================= */
 
 div.stButton > button {
@@ -583,6 +583,27 @@ div.stButton > button:hover {
 
 
 /* =========================================================
+   SEPARADOR SHARE
+========================================================= */
+
+.share-title {
+
+    text-align: center;
+
+    color: #AFAFAF;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    margin-top: 23px;
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
    FOOTER
 ========================================================= */
 
@@ -735,7 +756,7 @@ def answer_question(
 
 
     # ========================================================
-    # LÓGICA ORIGINAL DE PREGUNTA 7.1
+    # LÓGICA PREGUNTA 7.1
     # ========================================================
 
     if question_key == "P8":
@@ -881,7 +902,7 @@ if not st.session_state.finished:
 
 
     # ========================================================
-    # PROGRESO VISUAL
+    # PROGRESO
     # ========================================================
 
     try:
@@ -1030,9 +1051,6 @@ if not st.session_state.finished:
                 st.rerun()
 
 
-    # Si volvió a una pregunta ya contestada,
-    # puede avanzar sin cambiar la respuesta.
-
     if (
         question_key
         in st.session_state.answers
@@ -1167,7 +1185,7 @@ else:
 
 
     # ========================================================
-    # TARJETAS
+    # TARJETAS DE RECOMENDACIÓN
     # ========================================================
 
     for i, r in enumerate(
@@ -1240,7 +1258,7 @@ else:
         )
 
 
-        # SABOR AÑADIDO
+        # SABOR EXTRA
 
         if (
             answers.get("P12")
@@ -1261,7 +1279,7 @@ else:
             )
 
 
-        # ESCAPAR TEXTO
+        # TEXTOS
 
         bebida = html.escape(
             str(
@@ -1445,7 +1463,231 @@ else:
 
 
     # ========================================================
-    # REINICIAR
+    # COMPARTIR COFFEE MATCH
+    # ========================================================
+
+    if top:
+
+        best_coffee = (
+            top[0]["bebida"]
+        )
+
+        best_origin = (
+            top[0]["perfil"]["origen"]
+        )
+
+        best_roast = (
+            top[0]["perfil"]["tostado"]
+        )
+
+
+        share_title = (
+            "Mi Coffee Match"
+        )
+
+
+        share_text = (
+            f"☕ Mi Coffee Match fue: {best_coffee}\n"
+            f"Origen: {best_origin} · Tostado: {best_roast}\n\n"
+            "Descubre cuál es tu café ideal."
+        )
+
+
+        # Convertimos a JSON para que JavaScript
+        # reciba correctamente acentos, emojis, etc.
+
+        js_title = json.dumps(
+            share_title
+        )
+
+        js_text = json.dumps(
+            share_text
+        )
+
+        js_url = json.dumps(
+            PUBLIC_APP_URL
+        )
+
+
+        st.markdown(
+            (
+                '<div class="share-title">'
+                'COMPARTE TU RESULTADO'
+                '</div>'
+            ),
+            unsafe_allow_html=True
+        )
+
+
+        components.html(
+            f"""
+            <style>
+
+            html, body {{
+                margin: 0;
+                padding: 0;
+                background: transparent;
+                font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+            }}
+
+            .share-button {{
+
+                width: 100%;
+                height: 52px;
+
+                border-radius: 14px;
+
+                border:
+                    1px solid
+                    #00D5EE;
+
+                background:
+                    linear-gradient(
+                        135deg,
+                        #10191B,
+                        #101010
+                    );
+
+                color: #FFFFFF;
+
+                font-size: 15px;
+                font-weight: 700;
+
+                cursor: pointer;
+
+                transition:
+                    all 0.15s ease;
+            }}
+
+            .share-button:hover {{
+
+                background:
+                    linear-gradient(
+                        135deg,
+                        #00D5EE,
+                        #009FB5
+                    );
+
+                color: #061013;
+            }}
+
+            .share-message {{
+
+                display: none;
+
+                color: #D2D2D2;
+
+                text-align: center;
+
+                font-size: 12px;
+
+                padding-top: 7px;
+            }}
+
+            </style>
+
+
+            <button
+                class="share-button"
+                onclick="shareCoffee()"
+            >
+                ↗ Compartir mi Coffee Match
+            </button>
+
+
+            <div
+                id="share-message"
+                class="share-message"
+            >
+            </div>
+
+
+            <script>
+
+            async function shareCoffee() {{
+
+                const title = {js_title};
+
+                const text = {js_text};
+
+                const url = {js_url};
+
+                const message =
+                    document.getElementById(
+                        "share-message"
+                    );
+
+
+                if (navigator.share) {{
+
+                    try {{
+
+                        await navigator.share({{
+                            title: title,
+                            text: text,
+                            url: url
+                        }});
+
+                    }}
+
+                    catch (error) {{
+
+                        // Usuario canceló el menú.
+                        // No necesitamos mostrar error.
+
+                    }}
+
+                }}
+
+                else {{
+
+                    const fullText =
+                        text + "\\n" + url;
+
+
+                    try {{
+
+                        await navigator.clipboard.writeText(
+                            fullText
+                        );
+
+
+                        message.innerText =
+                            "✓ Resultado y enlace copiados";
+
+
+                        message.style.display =
+                            "block";
+
+                    }}
+
+                    catch (error) {{
+
+                        message.innerText =
+                            "Copia este enlace: " + url;
+
+
+                        message.style.display =
+                            "block";
+
+                    }}
+
+                }}
+
+            }}
+
+            </script>
+            """,
+
+            height=78
+        )
+
+
+    # ========================================================
+    # VOLVER A HACER TEST
     # ========================================================
 
     if st.button(
